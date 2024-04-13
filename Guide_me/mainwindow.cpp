@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <signup.h>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -12,3 +12,11 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    SignUp signup;
+    signup.setModal(true);
+    signup.exec();
+}
+
