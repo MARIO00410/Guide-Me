@@ -9,19 +9,31 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    addroute.cpp \
+    admin.cpp \
+    deleteroute.cpp \
     main.cpp \
     mainwindow.cpp \
     signup.cpp \
+    updateroute.cpp \
     user.cpp
 
 HEADERS += \
+    addroute.h \
+    admin.h \
+    deleteroute.h \
     mainwindow.h \
     signup.h \
+    updateroute.h \
     user.h
 
 FORMS += \
+    addroute.ui \
+    admin.ui \
+    deleteroute.ui \
     mainwindow.ui \
-    signup.ui
+    signup.ui \
+    updateroute.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
