@@ -1,67 +1,27 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QCoreApplication>
-#include <QFile>
-#include <QTextStream>
-#include <QDebug>
-#include <QMessageBox>
-bool checkCredentials(const QString &username, const QString &password) {
-    // QFile file(":/Login/Login Data.txt");
-    // if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    //     qDebug() << "Failed to open file.";
-    //     return false;
-    // }
-
-    // QTextStream in(&file);
-    // while (!in.atEnd()) {
-    //     QString line = in.readLine();
-    //     QStringList parts = line.split(':');
-    //     QString usernameFromFile = parts[0].trimmed();
-    //     QString passwordFromFile = parts[1].trimmed();
-    //     if (usernameFromFile == username && passwordFromFile == password) {
-    //         file.close();
-    //         return true;
-    //     }
-    // }
-
-    // file.close();
-    // return false;
-    /* I just commented the body of the function to make the code run properly,
-    because I deleted the demo file as demanded till we ask the TA.
-    I also created a demo name and password to check if the function will run properly or not*/
-    QString demo_user_name="kenzy";
-    QString demo_password="1111";
-    if (username==demo_user_name&&password==demo_password)
-        return true;
-    else
-        return false;
-}
-
+#include <login.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
 }
 
 MainWindow::~MainWindow()
 {
+
     delete ui;
 }
 
 
-
-
-void MainWindow::on_login_button_clicked()
+void MainWindow::on_main_login_button_clicked()
 {
-    QString username= ui->login_user_name_field->text();
-    QString password= ui->login_password_field->text();
-
-    if(checkCredentials(username,password))
-        QMessageBox::information(this ,"title","Login Successfully!!");
-    else
-        QMessageBox::warning(this ,"title","Login failed!!");
-
+    Login login;
+    login.setModal(true);
+    hide();
+    login.exec();
 }
 
