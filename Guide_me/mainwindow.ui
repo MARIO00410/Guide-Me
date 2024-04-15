@@ -10,6 +10,13 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>Times New Roman</family>
+    <pointsize>14</pointsize>
+    <bold>true</bold>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -17,14 +24,27 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>270</y>
-      <width>80</width>
-      <height>24</height>
+      <x>120</x>
+      <y>260</y>
+      <width>161</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>sign up test</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="login_main_button">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>260</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Log In</string>
     </property>
    </widget>
   </widget>
@@ -34,7 +54,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
   </widget>
