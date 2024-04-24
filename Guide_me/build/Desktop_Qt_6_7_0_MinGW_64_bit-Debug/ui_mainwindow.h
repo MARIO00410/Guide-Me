@@ -24,6 +24,8 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QPushButton *pushButton;
+    QPushButton *login_main_button;
+    QPushButton *dfs;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -32,11 +34,22 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(800, 600);
+        QFont font;
+        font.setFamilies({QString::fromUtf8("Times New Roman")});
+        font.setPointSize(14);
+        font.setBold(true);
+        MainWindow->setFont(font);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(290, 270, 80, 24));
+        pushButton->setGeometry(QRect(120, 260, 161, 41));
+        login_main_button = new QPushButton(centralwidget);
+        login_main_button->setObjectName("login_main_button");
+        login_main_button->setGeometry(QRect(380, 260, 171, 41));
+        dfs = new QPushButton(centralwidget);
+        dfs->setObjectName("dfs");
+        dfs->setGeometry(QRect(290, 200, 80, 31));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -55,6 +68,8 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "sign up test", nullptr));
+        login_main_button->setText(QCoreApplication::translate("MainWindow", "Log In", nullptr));
+        dfs->setText(QCoreApplication::translate("MainWindow", "DFS", nullptr));
     } // retranslateUi
 
 };
