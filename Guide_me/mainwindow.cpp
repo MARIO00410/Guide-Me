@@ -18,6 +18,7 @@ void MainWindow::on_pushButton_clicked()
 {
     SignUp signup;
     signup.setModal(true);
+    hide();
     signup.exec();
 }
 
