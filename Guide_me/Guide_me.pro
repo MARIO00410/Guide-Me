@@ -16,22 +16,29 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     profle.cpp \
+    dfs.cpp \
+    path.cpp \
     signup.cpp \
     user.cpp
 
 HEADERS += \
+
     data.h \
     homepage.h \
     info.h \
     login.h \
     mainwindow.h \
     profle.h \
+    dfs.h \
+    path.h \
     signup.h \
     user.h
 
 FORMS += \
+
     homepage.ui \
     info.ui \
+    dfs.ui \
     login.ui \
     mainwindow.ui \
     profle.ui \
