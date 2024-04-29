@@ -33,11 +33,3 @@ void MainWindow::on_login_main_button_clicked()
     login.exec();
 }
 
-
-void MainWindow::on_dfs_clicked()
-{
-    DFS dfs;
-    dfs.setModal(true);
-    dfs.exec();
-}
-

@@ -23,8 +23,6 @@ private slots:
 
     void on_login_main_button_clicked();
 
-    void on_dfs_clicked();
-
 private:
     Ui::MainWindow *ui;
 };

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DFS</class>
- <widget class="QDialog" name="DFS">
+ <class>BFS</class>
+ <widget class="QDialog" name="BFS">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>839</width>
-    <height>479</height>
+    <width>838</width>
+    <height>496</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>20</y>
      <width>821</width>
      <height>461</height>
     </rect>
@@ -27,7 +27,7 @@
      <widget class="QTextEdit" name="textEdit"/>
     </item>
     <item>
-     <widget class="QPushButton" name="dfsButton">
+     <widget class="QPushButton" name="showRoute">
       <property name="text">
        <string>Show Route</string>
       </property>

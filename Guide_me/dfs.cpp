@@ -3,17 +3,20 @@
 #include "Path.h"
 #include <QDebug>
 
+map<string, vector<Path>>source;
+map<string, bool>vis;
+vector<vector<Path>>path;
+
 DFS::DFS(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::DFS)
 {
     ui->setupUi(this);
+    ui->textEdit->setReadOnly(true);
 }
 
 
-map<string, vector<Path>>source;
-map<string, bool>vis;
-vector<vector<Path>>path;
+
 
 void dfs(string from, string destination, int budget, vector<Path>& route) {
     vis[from] = true;
@@ -64,7 +67,6 @@ void funct() {
 
 
 
-
     P = Path("Cairo", 30, "Metro");
     source["Giza"].push_back(P);
     P = Path("Cairo", 60, "Bus");
@@ -103,13 +105,17 @@ bool comparePathsByTotalAmount(vector<Path>& route1, vector<Path>& route2) {
     }
     return totalAmount1 < totalAmount2;
 }
+
+
 DFS::~DFS()
 {
     delete ui;
 }
 
+
 void DFS::on_dfsButton_clicked()
 {
+    QString Route="";
     int TotalAmount;
     vector<Path>route;
     funct();
@@ -118,12 +124,13 @@ void DFS::on_dfsButton_clicked()
 
     for (int i = 0; i < path.size(); i++) {
         TotalAmount = 0;
-        qDebug() << "Giza";
+        Route += "Giza\n";
         for (int j = 0; j < path[i].size(); j++) {
-            qDebug() <<'[' <<path[i][j].transportation<<']' << path[i][j].destination << " ";
+            Route+=('[' + path[i][j].transportation + ']' + path[i][j].destination + '\n');
             TotalAmount += path[i][j].money;
         }
-        qDebug()<< TotalAmount <<'\n';
+        Route += (to_string(TotalAmount) +'\n');
     }
+    ui->textEdit->setText(Route);
+    ui->dfsButton->setEnabled(false);
 }
-
