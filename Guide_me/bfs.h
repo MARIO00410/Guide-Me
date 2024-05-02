@@ -18,6 +18,8 @@ public:
 private slots:
     void on_showRoute_clicked();
 
+    void on_pushButtonBack_clicked();
+
 private:
     Ui::BFS *ui;
 };

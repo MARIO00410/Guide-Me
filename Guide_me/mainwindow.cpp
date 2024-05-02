@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <signup.h>
 #include <login.h>
+#include <homepage.h>
 #include <DFS.h>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,8 +23,6 @@ void MainWindow::on_pushButton_clicked()
     hide();
     signup.exec();
 }
-
-
 
 void MainWindow::on_login_main_button_clicked()
 {

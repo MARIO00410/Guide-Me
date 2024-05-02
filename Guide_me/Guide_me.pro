@@ -19,11 +19,13 @@ SOURCES += \
     profle.cpp \
     dfs.cpp \
     path.cpp \
+    readgraph.cpp \
     signup.cpp \
     user.cpp
 
 HEADERS += \
     bfs.h \
+    readgraph.h \
     user.h \
     data.h \
     homepage.h \

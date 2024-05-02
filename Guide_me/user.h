@@ -10,6 +10,7 @@ private:
 
 
 public:
+
     string FirstName,LastName;
     string UserName;
     string Password;

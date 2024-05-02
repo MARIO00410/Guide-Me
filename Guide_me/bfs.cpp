@@ -3,9 +3,10 @@
 #include "ui_bfs.h"
 #include <vector>
 #include <queue>
-#include <unordered_map>
-#include <unordered_set>
+#include <set>
 #include <string>
+#include <homepage.h>
+#include <readgraph.h>
 
 
 QString Route="";
@@ -35,23 +36,12 @@ struct ComparePaths {
     }
 };
 
-bool sortVyTotalAmount(const vector<PrintSegment>& path1, const vector<PrintSegment>& path2){
-    int totalSpend1 = 0, totalSpend2 = 0;
-    for (const auto& segment : path1) totalSpend1 += segment.price;
-    for (const auto& segment : path2) totalSpend2 += segment.price;
-    return totalSpend1 > totalSpend2;
-}
-
 //global variables
-unordered_map<string, vector<Path>> graph;
-unordered_map<string, int> cityId;
-vector<int> adjList[500];
-unordered_set<string> printedPaths;
-
-
+set<string> printedPaths;
 
 string getCityById(int id) {
-    for (const auto& entry : cityId) {
+    ReadGraph readGraph;
+    for (const auto& entry : readGraph.cityId) {
         if (entry.second == id) {
             return entry.first;
         }
@@ -78,7 +68,7 @@ void printPath(const vector<PrintSegment>& path) {
     printedPaths.insert(key);
 
     int totalSpend = 0;
-    for (int i = 0; i < path.size(); ++i) {
+    for (size_t i = 0; i < path.size(); ++i) {
         Route += getCityById(path[i].cityId) ;
         if(i!=path.size()-1)
             Route+=" (" + path[i+1].method + ") ";
@@ -86,7 +76,7 @@ void printPath(const vector<PrintSegment>& path) {
         if (i != path.size() - 1) Route += " -> ";
         totalSpend += path[i].price;
     }
-    Route+="\nTotal Spend: " + to_string(totalSpend) + '\n';
+    Route+="\n Total Spend: " + to_string(totalSpend) + '\n';
 }
 
 
@@ -98,7 +88,6 @@ bool isNotVisited(int nodeId, const vector<PrintSegment>& path) {
     }
     return true;
 }
-
 
 void findPaths(int sourceId, int destId, int budget) {
     priority_queue<vector<PrintSegment>, vector<vector<PrintSegment>>, ComparePaths> pq;
@@ -119,11 +108,11 @@ void findPaths(int sourceId, int destId, int budget) {
         if (lastNodeId == destId && totalSpend <= budget) {
             printPath(path);
         }
-
-        for (int nextNodeId : adjList[lastNodeId]) {
+        ReadGraph readGraph;
+        for (int nextNodeId : readGraph.adjList[lastNodeId]) {
             if (isNotVisited(nextNodeId, path)) {
-                for (const auto& edge : graph[getCityById(lastNodeId)]) {
-                    if (cityId[edge.destination] == nextNodeId) {
+                for (const auto& edge : readGraph.graph[getCityById(lastNodeId)]) {
+                    if (readGraph.cityId[edge.destination] == nextNodeId) {
                         vector<PrintSegment> newPath = path;
                         newPath.push_back(PrintSegment{nextNodeId, edge.transportation, edge.money });
                         pq.push(newPath);
@@ -131,41 +120,8 @@ void findPaths(int sourceId, int destId, int budget) {
                 }
             }
         }
-
-
-
-
-
     }
 }
-
-/*void addEdge(string source, string destination, string method, int price) {
-    graph[source].push_back({ destination, method, price });
-    graph[destination].push_back({ source, method, price });
-
-    int sourceId = cityId[source] ? cityId[source] : (cityId[source] = cityId.size() + 1);
-    int destId = cityId[destination] ? cityId[destination] : (cityId[destination] = cityId.size() + 1);
-
-    adjList[sourceId].push_back(destId);
-    adjList[destId].push_back(sourceId);
-}*/
-
-void addEdge(string source, string destination, string method, int price) {
-    Path path1 = { destination, price ,method};
-    Path path2 = { source, price , method};
-
-    graph[source].push_back(path1);
-    graph[destination].push_back(path2);
-
-    int sourceId = cityId[source] ? cityId[source] : (cityId[source] = cityId.size() + 1);
-    int destId = cityId[destination] ? cityId[destination] : (cityId[destination] = cityId.size() + 1);
-
-    adjList[sourceId].push_back(destId);
-    adjList[destId].push_back(sourceId);
-}
-
-
-
 
 BFS::~BFS()
 {
@@ -174,25 +130,23 @@ BFS::~BFS()
 
 void BFS::on_showRoute_clicked()
 {
-    addEdge("Cairo", "Giza", "Metro", 30);
-    addEdge("Cairo", "Giza", "Bus", 60);
-    addEdge("Cairo", "Giza", "Uber", 230);
-    addEdge("Dahab", "Giza", "Bus", 500);
-    addEdge("Dahab", "Giza", "Microbus", 345);
-    addEdge("Cairo", "BeniSuef", "Microbus", 20);
-    addEdge("Cairo", "BeniSuef", "Bus", 15);
-    addEdge("Asyut", "Cairo", "Train", 250);
-    addEdge("Asyut", "Cairo", "Bus", 450);
-    addEdge("Dahab", "BeniSuef", "Microbus", 200);
-    addEdge("Dahab", "BeniSuef", "Bus", 315);
+    ReadGraph readGraph;
+    //readGraph.GetGraph();
 
-    string source = "Cairo";
-    string destination = "Dahab";
-    int budget = 550;
+    string source = readGraph.StartFrom;
+    string destination = readGraph.GoTo;
+    int budget = readGraph.Budget;
 
-    // Call the function to find paths
-    findPaths(cityId[source], cityId[destination], budget);
+    findPaths(readGraph.cityId[source], readGraph.cityId[destination], budget);
     ui->textEdit->setText(Route);
     ui->showRoute->setEnabled(false);
+}
+
+void BFS::on_pushButtonBack_clicked()
+{
+    HomePage homePage;
+    homePage.setModal(true);
+    hide();
+    homePage.exec();
 }
 

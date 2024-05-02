@@ -44,6 +44,7 @@ void SignUp::on_pushButton_clicked()
     Data data;
     user u(FirstName, LastName, UserName,Password, Age, Gender, Country);
     data.users.push_back(u);
+    data.writeFile();
 
     Login LoginPage;
     LoginPage.setModal(true);
