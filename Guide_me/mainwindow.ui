@@ -33,7 +33,7 @@
     <property name="title">
      <string>Welcome to Guide me </string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -59,19 +59,6 @@
       </item>
      </layout>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="dfs">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>200</y>
-      <width>80</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>DFS</string>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

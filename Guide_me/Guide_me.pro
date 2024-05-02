@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bfs.cpp \
     data.cpp \
     homepage.cpp \
     info.cpp \
@@ -18,11 +19,14 @@ SOURCES += \
     profle.cpp \
     dfs.cpp \
     path.cpp \
+    readgraph.cpp \
     signup.cpp \
     user.cpp
 
 HEADERS += \
-
+    bfs.h \
+    readgraph.h \
+    user.h \
     data.h \
     homepage.h \
     info.h \
@@ -31,18 +35,17 @@ HEADERS += \
     profle.h \
     dfs.h \
     path.h \
-    signup.h \
-    user.h
+    signup.h
 
 FORMS += \
-
+    bfs.ui \
+   signup.ui \
     homepage.ui \
     info.ui \
     dfs.ui \
     login.ui \
     mainwindow.ui \
-    profle.ui \
-    signup.ui
+    profle.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

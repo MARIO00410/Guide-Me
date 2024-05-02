@@ -18,6 +18,10 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_dfs_clicked();
+
+    void on_BFS_clicked();
+
 private:
     Ui::HomePage *ui;
 };

@@ -19,6 +19,8 @@ private slots:
 
     void on_dfsButton_clicked();
 
+    void on_pushButtonBack_clicked();
+
 private:
     Ui::DFS *ui;
 };

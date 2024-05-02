@@ -8,7 +8,10 @@ class Data
 {
 public:
     static int currentUser;
-    static std::vector<user>users;
+    static vector<user>users;
     Data();
+    static void ReadFile();
+    static bool writeFile();
+
 };
 #endif // DATA_H

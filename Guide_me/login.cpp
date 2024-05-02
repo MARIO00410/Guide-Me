@@ -15,10 +15,9 @@ Login::Login(QWidget *parent)
     ui->setupUi(this);
 }
 bool Login::checkCredentials(const QString &username, const QString &password) {
-    Data data;
-    for(int i=0;i<data.users.size();i++){
-        if(username.toStdString()==data.users[i].UserName && password.toStdString()==data.users[i].Password){
-            data.currentUser=i;
+    for(int i=0;i<Data::users.size();i++){
+        if(username.toStdString()==Data::users[i].UserName && password.toStdString()==Data::users[i].Password){
+          Data::currentUser=i;
             return true;
         }
     }
