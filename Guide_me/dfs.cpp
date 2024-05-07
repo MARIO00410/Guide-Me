@@ -4,6 +4,12 @@
 #include <QDialog>
 #include <homepage.h>
 #include <readgraph.h>
+#include "nodeitem.h"
+#include "edgeitem.h"
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsItem>
+#include <QPainter>
 
 
 
@@ -13,6 +19,10 @@ DFS::DFS(QWidget *parent)
 {
     ui->setupUi(this);
     ui->textEdit->setReadOnly(true);
+    QGraphicsScene *scene = new QGraphicsScene();
+    ui->graphicsView->setScene(scene);
+    view=ui->graphicsView;
+    view->setGeometry(0,0,700,550);
 }
 
 
@@ -82,6 +92,29 @@ void DFS::on_dfsButton_clicked()
 
     ui->textEdit->setText(Route);
     ui->dfsButton->setEnabled(false);
+
+
+    for (int i = 0; i < path.size(); i++) {
+        int xOffset = 150; // Calculate yOffset for the current row
+        QGraphicsScene *scene = view->scene();
+        // Add source node for each row
+        NodeItem *sourceNode = new NodeItem(QString::fromStdString("Cairo"));
+        // Adjust the position as needed
+        scene->addItem(sourceNode);
+        int numNodes = path[i].size();
+        int yOffset = 150 *(i); // Reset x-coordinate for each new path
+        sourceNode->setPos(xOffset,yOffset);
+     //   NodeItem *prev=new NodeItem();
+        for (int j = 0; j < numNodes; j++) {
+            NodeItem *node = new NodeItem(QString::fromStdString(path[i][j].destination));
+            qreal x = xOffset + (j+1) * 150; ; // Adjust x position based on j and numNodes
+            // Keep y position same for all nodes in the row
+            qreal y = yOffset ;
+            node->setPos(x, y);
+            scene->addItem(node);
+       //     EdgeItem *edge=new EdgeItem()
+        }
+    }
 }
 
 void DFS::on_pushButtonBack_clicked()

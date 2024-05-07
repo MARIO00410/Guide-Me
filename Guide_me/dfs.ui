@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>836</width>
-    <height>511</height>
+    <width>999</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,13 +18,16 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>821</width>
+     <width>1101</width>
      <height>461</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QTextEdit" name="textEdit"/>
+    </item>
+    <item>
+     <widget class="QGraphicsView" name="graphicsView"/>
     </item>
     <item>
      <widget class="QPushButton" name="dfsButton">

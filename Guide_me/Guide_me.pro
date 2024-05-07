@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     bfs.cpp \
     data.cpp \
+    edgeitem.cpp \
     homepage.cpp \
     info.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
+    nodeitem.cpp \
     profle.cpp \
     dfs.cpp \
     path.cpp \
@@ -25,6 +27,8 @@ SOURCES += \
 
 HEADERS += \
     bfs.h \
+    edgeitem.h \
+    nodeitem.h \
     readgraph.h \
     user.h \
     data.h \
