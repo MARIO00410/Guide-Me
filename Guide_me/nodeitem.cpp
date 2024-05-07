@@ -3,6 +3,7 @@
 #include <QGraphicsView>
 #include <QGraphicsItem>
 #include <QPainter>
+#include <QThread>
 
 NodeItem::NodeItem(QString text) {
     this->text=text;
@@ -12,6 +13,7 @@ QRectF NodeItem::boundingRect() const {
     return QRectF(-15, -15, 55, 55); // Adjust bounding rect as needed
 }
 void NodeItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)  {
+
     QPen pen(Qt::black, 4); // Adjust color and thickness as needed
     painter->setPen(pen);
     painter->drawEllipse(-15, -15, 55, 55); // Draw a circle for the node

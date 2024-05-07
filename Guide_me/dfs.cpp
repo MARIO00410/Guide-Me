@@ -10,8 +10,10 @@
 #include <QGraphicsView>
 #include <QGraphicsItem>
 #include <QPainter>
-
-
+#include<QTimer>
+#include <cstdlib>
+#include <chrono>
+#include <QThread>
 
 DFS::DFS(QWidget *parent)
     : QDialog(parent)
@@ -23,6 +25,7 @@ DFS::DFS(QWidget *parent)
     ui->graphicsView->setScene(scene);
     view=ui->graphicsView;
     view->setGeometry(0,0,700,550);
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing);
 }
 
 
@@ -76,7 +79,7 @@ void DFS::on_dfsButton_clicked()
     QString Route="";
     int TotalAmount;
     vector<Path>route;
-
+    string start=ReadGraph::StartFrom;
     dfs(ReadGraph::StartFrom,ReadGraph::GoTo,ReadGraph::Budget,route, vis, path);
     sort(path.begin(), path.end(), comparePathsByTotalAmount);
 
@@ -98,21 +101,27 @@ void DFS::on_dfsButton_clicked()
         int xOffset = 150; // Calculate yOffset for the current row
         QGraphicsScene *scene = view->scene();
         // Add source node for each row
-        NodeItem *sourceNode = new NodeItem(QString::fromStdString("Cairo"));
+        NodeItem *sourceNode = new NodeItem(QString::fromStdString(start));
         // Adjust the position as needed
         scene->addItem(sourceNode);
         int numNodes = path[i].size();
         int yOffset = 150 *(i); // Reset x-coordinate for each new path
         sourceNode->setPos(xOffset,yOffset);
-     //   NodeItem *prev=new NodeItem();
+        NodeItem *prev=sourceNode;
         for (int j = 0; j < numNodes; j++) {
             NodeItem *node = new NodeItem(QString::fromStdString(path[i][j].destination));
             qreal x = xOffset + (j+1) * 150; ; // Adjust x position based on j and numNodes
             // Keep y position same for all nodes in the row
             qreal y = yOffset ;
             node->setPos(x, y);
+            QThread::msleep(1000);
             scene->addItem(node);
-       //     EdgeItem *edge=new EdgeItem()
+            //this_thread::sleep_for(2s);
+
+            EdgeItem *edge=new EdgeItem(prev,node);
+            scene->addItem(edge);
+
+            prev= node;
         }
     }
 }

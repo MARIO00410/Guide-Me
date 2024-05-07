@@ -2,7 +2,7 @@
 #define BFS_H
 
 #include <QDialog>
-
+#include <QGraphicsView>
 namespace Ui {
 class BFS;
 }
@@ -12,6 +12,7 @@ class BFS : public QDialog
     Q_OBJECT
 
 public:
+    static int counter;
     explicit BFS(QWidget *parent = nullptr);
     ~BFS();
 
@@ -22,6 +23,8 @@ private slots:
 
 private:
     Ui::BFS *ui;
+    QGraphicsView *view;
+
 };
 
 #endif // BFS_H

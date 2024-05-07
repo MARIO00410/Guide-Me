@@ -7,16 +7,25 @@
 #include <string>
 #include <homepage.h>
 #include <readgraph.h>
-
-
+#include "nodeitem.h"
+#include "edgeitem.h"
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsItem>
+#include <QPainter>
 QString Route="";
-
+int BFS::counter=0;
 BFS::BFS(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::BFS)
 {
     ui->setupUi(this);
     ui->textEdit->setReadOnly(true);
+    QGraphicsScene *scene = new QGraphicsScene();
+    ui->graphicsView->setScene(scene);
+    view=ui->graphicsView;
+    view->setGeometry(0,0,700,550);
+    ui->graphicsView->setRenderHint(QPainter::Antialiasing);
 }
 
 //control output format
@@ -58,7 +67,7 @@ string generatePathKey(const vector<PrintSegment>& path) {
     return key;
 }
 
-void printPath(const vector<PrintSegment>& path) {
+void printPath(const vector<PrintSegment>& path) {  
     string key = generatePathKey(path);
     //path exist return pointer point to element if not exist return pointer point to end element of the set
     if (printedPaths.find(key) != printedPaths.end()) {
@@ -68,7 +77,7 @@ void printPath(const vector<PrintSegment>& path) {
     printedPaths.insert(key);
 
     int totalSpend = 0;
-    for (size_t i = 0; i < path.size(); ++i) {
+    for (int i = 0; i < path.size(); ++i) {
         Route += getCityById(path[i].cityId) ;
         if(i!=path.size()-1)
             Route+=" (" + path[i+1].method + ") ";
@@ -76,6 +85,35 @@ void printPath(const vector<PrintSegment>& path) {
         if (i != path.size() - 1) Route += " -> ";
         totalSpend += path[i].price;
     }
+
+    /*    int xOffset = 150; // Calculate yOffset for the current row
+    QGraphicsScene *scene;
+*scene=view->scene();
+        // Add source node for each row
+        NodeItem *sourceNode = new NodeItem(QString::fromStdString(start));
+        // Adjust the position as needed
+        scene->addItem(sourceNode);
+        int numNodes = path.size();
+        int yOffset = 150 * BFS::counter++ ; // Reset x-coordinate for each new path
+        sourceNode->setPos(xOffset,yOffset);
+        NodeItem *prev=sourceNode;
+        for (int j = 0; j < numNodes; j++) {
+            NodeItem *node = new NodeItem(QString::fromStdString(path[j].));
+            qreal x = xOffset + (j+1) * 150; ; // Adjust x position based on j and numNodes
+            // Keep y position same for all nodes in the row
+            qreal y = yOffset ;
+            node->setPos(x, y);
+          //  QThread::msleep(1000);
+            scene->addItem(node);
+            //this_thread::sleep_for(2s);
+
+            EdgeItem *edge=new EdgeItem(prev,node);
+            scene->addItem(edge);
+
+            prev= node;
+        }
+    }
+*/
     Route+="\n Total Spend: " + to_string(totalSpend) + '\n';
 }
 
@@ -136,7 +174,6 @@ void BFS::on_showRoute_clicked()
     string source = readGraph.StartFrom;
     string destination = readGraph.GoTo;
     int budget = readGraph.Budget;
-
     findPaths(readGraph.cityId[source], readGraph.cityId[destination], budget);
     ui->textEdit->setText(Route);
     ui->showRoute->setEnabled(false);
