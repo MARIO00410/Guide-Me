@@ -13,20 +13,27 @@
 #include <QGraphicsView>
 #include <QGraphicsItem>
 #include <QPainter>
+
 QString Route="";
-int BFS::counter=0;
+int off=0;
+
 BFS::BFS(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::BFS)
 {
     ui->setupUi(this);
     ui->textEdit->setReadOnly(true);
+
+    // Create a new QGraphicsScene and set it to the QGraphicsView
     QGraphicsScene *scene = new QGraphicsScene();
-    ui->graphicsView->setScene(scene);
-    view=ui->graphicsView;
-    view->setGeometry(0,0,700,550);
-    ui->graphicsView->setRenderHint(QPainter::Antialiasing);
+    view = ui->graphicsView; // Initialize view
+    view->setScene(scene);
+    view->setGeometry(0, 0, 700, 550);
+    view->setRenderHint(QPainter::Antialiasing);
 }
+
+
+
 
 //control output format
 struct PrintSegment {
@@ -59,15 +66,15 @@ string getCityById(int id) {
 }
 
 //to get a unique path to use in the set
-string generatePathKey(const vector<PrintSegment>& path) {
+string generatePathKey(vector<PrintSegment>& path) {
     string key = "";
-    for (const auto& segment : path) {
+    for (auto& segment : path) {
         key += to_string(segment.cityId) + "-" + segment.method + "-" + to_string(segment.price) + "->";
     }
     return key;
 }
 
-void printPath(const vector<PrintSegment>& path) {  
+void printPath(vector<PrintSegment>& path, QGraphicsScene* scene, string source) {
     string key = generatePathKey(path);
     //path exist return pointer point to element if not exist return pointer point to end element of the set
     if (printedPaths.find(key) != printedPaths.end()) {
@@ -77,48 +84,52 @@ void printPath(const vector<PrintSegment>& path) {
     printedPaths.insert(key);
 
     int totalSpend = 0;
+
+    int *sizes=new int[path.size()];
+
     for (int i = 0; i < path.size(); ++i) {
-        Route += getCityById(path[i].cityId) ;
+        Route += getCityById(path[i].cityId);
         if(i!=path.size()-1)
             Route+=" (" + path[i+1].method + ") ";
 
         if (i != path.size() - 1) Route += " -> ";
-        totalSpend += path[i].price;
+            totalSpend += path[i].price;
+
     }
 
-    /*    int xOffset = 150; // Calculate yOffset for the current row
-    QGraphicsScene *scene;
-*scene=view->scene();
+    Route+="\n Total Spend: " + to_string(totalSpend) + '\n';
+
+        int xOffset = 150; // Calculate yOffset for the current row
+
         // Add source node for each row
-        NodeItem *sourceNode = new NodeItem(QString::fromStdString(start));
+        NodeItem *sourceNode = new NodeItem(QString::fromStdString(source));
         // Adjust the position as needed
         scene->addItem(sourceNode);
         int numNodes = path.size();
-        int yOffset = 150 * BFS::counter++ ; // Reset x-coordinate for each new path
+        int yOffset = 150 * off++; // Reset x-coordinate for each new path
         sourceNode->setPos(xOffset,yOffset);
         NodeItem *prev=sourceNode;
-        for (int j = 0; j < numNodes; j++) {
-            NodeItem *node = new NodeItem(QString::fromStdString(path[j].));
+        for (int j = 0; j < numNodes-1; j++) {
+            NodeItem *node = new NodeItem(QString::fromStdString(getCityById(path[j+1].cityId)));
             qreal x = xOffset + (j+1) * 150; ; // Adjust x position based on j and numNodes
             // Keep y position same for all nodes in the row
             qreal y = yOffset ;
             node->setPos(x, y);
-          //  QThread::msleep(1000);
+
             scene->addItem(node);
-            //this_thread::sleep_for(2s);
 
             EdgeItem *edge=new EdgeItem(prev,node);
             scene->addItem(edge);
 
             prev= node;
         }
-    }
-*/
-    Route+="\n Total Spend: " + to_string(totalSpend) + '\n';
+
 }
 
 
-bool isNotVisited(int nodeId, const vector<PrintSegment>& path) {
+
+
+bool isNotVisited(int nodeId, vector<PrintSegment>& path) {
     for (const auto& segment : path) {
         if (segment.cityId == nodeId) {
             return false;
@@ -127,7 +138,7 @@ bool isNotVisited(int nodeId, const vector<PrintSegment>& path) {
     return true;
 }
 
-void findPaths(int sourceId, int destId, int budget) {
+void findPaths(int sourceId, int destId, int budget, QGraphicsScene* scene, string source) {
     priority_queue<vector<PrintSegment>, vector<vector<PrintSegment>>, ComparePaths> pq;
     vector<PrintSegment> initialPath = {{sourceId, "", 0} };
     pq.push(initialPath);
@@ -139,12 +150,12 @@ void findPaths(int sourceId, int destId, int budget) {
         int lastNodeId = path.back().cityId;
         int totalSpend = 0;
 
-        for (const auto& segment : path) {
+        for (auto& segment : path) {
             totalSpend += segment.price;
         }
 
         if (lastNodeId == destId && totalSpend <= budget) {
-            printPath(path);
+            printPath(path, scene, source);
         }
         ReadGraph readGraph;
         for (int nextNodeId : readGraph.adjList[lastNodeId]) {
@@ -170,11 +181,12 @@ void BFS::on_showRoute_clicked()
 {
     ReadGraph readGraph;
     //readGraph.GetGraph();
+    QGraphicsScene *scene = view -> scene();
 
     string source = readGraph.StartFrom;
     string destination = readGraph.GoTo;
     int budget = readGraph.Budget;
-    findPaths(readGraph.cityId[source], readGraph.cityId[destination], budget);
+    findPaths(readGraph.cityId[source], readGraph.cityId[destination], budget, scene, source);
     ui->textEdit->setText(Route);
     ui->showRoute->setEnabled(false);
 }

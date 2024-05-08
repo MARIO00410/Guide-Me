@@ -61,7 +61,7 @@ void ReadGraph::GetGraph() {
         qInfo() << "graph already read";
         return;
     }
-    const QString fileName = "C:/Users/mario/ds2/Guide-Me/Guide_me/graph.txt";
+    const QString fileName = "C:\\Users\\youss\\OneDrive\\Desktop\\TransportationMap.txt";
     QFile file(fileName);
 
     if (!file.exists()) {

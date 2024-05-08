@@ -114,7 +114,7 @@ void DFS::on_dfsButton_clicked()
             // Keep y position same for all nodes in the row
             qreal y = yOffset ;
             node->setPos(x, y);
-            QThread::msleep(1000);
+            //QThread::msleep(1000);
             scene->addItem(node);
             //this_thread::sleep_for(2s);
 
