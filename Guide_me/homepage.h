@@ -22,6 +22,8 @@ private slots:
 
     void on_BFS_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::HomePage *ui;
 };

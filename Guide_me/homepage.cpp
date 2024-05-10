@@ -4,6 +4,7 @@
 #include <dfs.h>
 #include <readgraph.h>
 #include <bfs.h>
+#include"add.h"
 
 HomePage::HomePage(QWidget *parent)
     : QDialog(parent)
@@ -53,5 +54,14 @@ void HomePage::on_BFS_clicked()
     bfs.setModal(true);
     hide();
     bfs.exec();
+}
+
+
+void HomePage::on_pushButton_2_clicked()
+{
+    add trans ;
+    trans.setModal(true);
+    hide();
+    trans.exec();
 }
 

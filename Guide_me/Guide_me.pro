@@ -9,8 +9,11 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    add.cpp \
     bfs.cpp \
     data.cpp \
+    delete.cpp \
+    functions.cpp \
     homepage.cpp \
     info.cpp \
     login.cpp \
@@ -24,7 +27,10 @@ SOURCES += \
     user.cpp
 
 HEADERS += \
+    add.h \
     bfs.h \
+    delete.h \
+    functions.h \
     readgraph.h \
     user.h \
     data.h \
@@ -38,7 +44,10 @@ HEADERS += \
     signup.h
 
 FORMS += \
+    add.ui \
     bfs.ui \
+    delete.ui \
+    functions.ui \
    signup.ui \
     homepage.ui \
     info.ui \

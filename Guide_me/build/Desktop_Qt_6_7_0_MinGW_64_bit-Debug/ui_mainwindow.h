@@ -11,10 +11,12 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -23,9 +25,11 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QPushButton *pushButton;
+    QGroupBox *groupBox;
+    QWidget *layoutWidget;
+    QVBoxLayout *verticalLayout;
     QPushButton *login_main_button;
-    QPushButton *dfs;
+    QPushButton *pushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -33,7 +37,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(800, 600);
+        MainWindow->resize(460, 480);
         QFont font;
         font.setFamilies({QString::fromUtf8("Times New Roman")});
         font.setPointSize(14);
@@ -41,19 +45,29 @@ public:
         MainWindow->setFont(font);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(120, 260, 161, 41));
-        login_main_button = new QPushButton(centralwidget);
+        groupBox = new QGroupBox(centralwidget);
+        groupBox->setObjectName("groupBox");
+        groupBox->setGeometry(QRect(0, 0, 311, 331));
+        layoutWidget = new QWidget(groupBox);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(30, 140, 231, 111));
+        verticalLayout = new QVBoxLayout(layoutWidget);
+        verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        login_main_button = new QPushButton(layoutWidget);
         login_main_button->setObjectName("login_main_button");
-        login_main_button->setGeometry(QRect(380, 260, 171, 41));
-        dfs = new QPushButton(centralwidget);
-        dfs->setObjectName("dfs");
-        dfs->setGeometry(QRect(290, 200, 80, 31));
+
+        verticalLayout->addWidget(login_main_button);
+
+        pushButton = new QPushButton(layoutWidget);
+        pushButton->setObjectName("pushButton");
+
+        verticalLayout->addWidget(pushButton);
+
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 460, 32));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -67,9 +81,9 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "sign up test", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("MainWindow", "Welcome to Guide me ", nullptr));
         login_main_button->setText(QCoreApplication::translate("MainWindow", "Log In", nullptr));
-        dfs->setText(QCoreApplication::translate("MainWindow", "DFS", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "Sign up", nullptr));
     } // retranslateUi
 
 };

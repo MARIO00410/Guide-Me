@@ -8,6 +8,7 @@
 class ReadGraph
 {
 public:
+    static map<string,int>cits;
     static bool is_read;
     static map<string, vector<Path>> graph;
     static map<string, int> cityId;
@@ -18,6 +19,7 @@ public:
     static string StartFrom;
     static string GoTo;
     static int Budget;
+    static bool writeFile();
 };
 
 #endif // READGRAPH_H
