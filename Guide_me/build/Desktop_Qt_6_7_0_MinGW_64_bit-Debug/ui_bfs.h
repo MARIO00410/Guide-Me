@@ -25,7 +25,7 @@ public:
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QGraphicsView *graphicsView;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButtonBack;
     QPushButton *showRoute;
@@ -37,28 +37,28 @@ public:
         BFS->resize(750, 650);
         layoutWidget = new QWidget(BFS);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(0, 0, 741, 601));
+        layoutWidget->setGeometry(QRect(0, 0, 781, 601));
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         graphicsView = new QGraphicsView(layoutWidget);
         graphicsView->setObjectName("graphicsView");
-        graphicsView->setStyleSheet(QString::fromUtf8("background:transparent;"));
+        graphicsView->setStyleSheet(QString::fromUtf8("background:rgba(0,0,0,0.5);"));
 
         horizontalLayout->addWidget(graphicsView);
 
-        widget = new QWidget(BFS);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(0, 610, 169, 26));
-        horizontalLayout_2 = new QHBoxLayout(widget);
+        layoutWidget1 = new QWidget(BFS);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(0, 610, 169, 26));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        pushButtonBack = new QPushButton(widget);
+        pushButtonBack = new QPushButton(layoutWidget1);
         pushButtonBack->setObjectName("pushButtonBack");
 
         horizontalLayout_2->addWidget(pushButtonBack);
 
-        showRoute = new QPushButton(widget);
+        showRoute = new QPushButton(layoutWidget1);
         showRoute->setObjectName("showRoute");
 
         horizontalLayout_2->addWidget(showRoute);

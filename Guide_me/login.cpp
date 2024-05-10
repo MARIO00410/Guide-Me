@@ -8,6 +8,8 @@
 #include <data.h>
 #include <signup.h>
 #include <homepage.h>
+#include <QMovie>
+
 Login::Login(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Login)
@@ -15,11 +17,13 @@ Login::Login(QWidget *parent)
     ui->setupUi(this);
 
 
-    QPixmap bkgnd("C:\\Users\\youss\\Downloads\\_9ca52c9a-e482-4813-897e-b5e41dc53665.jpeg");
-    bkgnd = bkgnd.scaled(this->size());
-    QPalette palette;
-    palette.setBrush(QPalette::Window, bkgnd);
-    this->setPalette(palette);
+
+    QMovie *movie = new QMovie("C:\\Users\\youss\\Downloads\\c0c02bafcfe60ea76d6d7eede8ec4564(1).gif");
+    ui->background->setMovie(movie);
+    movie->start();
+
+
+
 }
 bool Login::checkCredentials(const QString &username, const QString &password) {
     for(int i=0;i<Data::users.size();i++){

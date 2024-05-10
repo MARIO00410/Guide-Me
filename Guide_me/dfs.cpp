@@ -23,6 +23,12 @@ DFS::DFS(QWidget *parent)
 {
     ui->setupUi(this);
     //ui->textEdit->setReadOnly(true);
+    QPixmap bkgnd("C:\\Users\\youss\\OneDrive\\Desktop\\WhatsApp_Image_2024-04-13_at_19.31.07_8e45379f.jpg");
+    bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
+
     QGraphicsScene *scene = new QGraphicsScene();
     view = ui->graphicsView; // Initialize view
     view->setScene(scene);
@@ -80,6 +86,7 @@ void DFS::on_dfsButton_clicked()
 
     QString Route="";
     int TotalAmount;
+    vector<int> totalPrices;
     vector<Path>route;
     string start=ReadGraph::StartFrom;
     dfs(ReadGraph::StartFrom,ReadGraph::GoTo,ReadGraph::Budget,route, vis, path);
@@ -93,6 +100,7 @@ void DFS::on_dfsButton_clicked()
             TotalAmount += path[i][j].money;
         }
         Route += ("\n TotalAmount "+ to_string(TotalAmount) +'\n');
+        totalPrices.push_back(TotalAmount);
     }
 
     //ui->textEdit->setText(Route);
@@ -130,32 +138,34 @@ void DFS::on_dfsButton_clicked()
             // Create a label for the transportation method and position it above the edge
             QLabel *transportationLabel = new QLabel(QString::fromStdString(path[i][j].transportation));
             transportationLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
-
-            transportationLabel->setGeometry(midX, midY-15, 50, 20); // Adjust size as needed
+            transportationLabel->setGeometry(midX, midY-5, 50, 20); // Adjust size as needed
+            transportationLabel->setStyleSheet("background-color: rgba(0,0,0,0%)");
 
             scene->addWidget(transportationLabel); // Add the label to the scene
 
 
             QLabel *moneyLabel = new QLabel(QString::fromStdString(to_string(path[i][j].money)));
             moneyLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
-
-            moneyLabel->setGeometry(midX, midY+15, 50, 20); // Adjust size as needed
+            moneyLabel->setStyleSheet("background-color: rgba(0,0,0,0%)");
+            moneyLabel->setGeometry(midX, midY+20, 50, 20); // Adjust size as needed
 
             scene->addWidget(moneyLabel);
 
             qreal xTotal = xOffset + (numNodes+0.5) * 150;
 
 
-            QLabel *totalLabel = new QLabel(QString::fromStdString("Total Price: " + to_string(TotalAmount)));
+            QLabel *totalLabel = new QLabel(QString::fromStdString("Total Price: " + to_string(totalPrices.at(i))));
             totalLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
 
             totalLabel->setGeometry(xTotal, y, 250, 20); // Adjust size as needed
+            totalLabel->setStyleSheet("background-color: rgba(0,0,0,0%)");
 
             scene->addWidget(totalLabel);
 
             prev= node;
         }
     }
+    totalPrices.clear();
 }
 
 void DFS::on_pushButtonBack_clicked()

@@ -8,6 +8,7 @@
 #include <user.h>
 #include <data.h>
 #include <login.h>
+#include <QMovie>
 
 using namespace std;
 
@@ -16,6 +17,11 @@ SignUp::SignUp(QWidget *parent)
     , ui(new Ui::SignUp)
 {
     ui->setupUi(this);
+
+    QMovie *movie = new QMovie("C:\\Users\\youss\\Downloads\\c0c02bafcfe60ea76d6d7eede8ec4564(1).gif");
+    ui->background->setMovie(movie);
+    movie->start();
+
     ui->GenderComboBox->addItem("Male");
     ui->GenderComboBox->addItem("Female");
 }

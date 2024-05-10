@@ -25,7 +25,7 @@ public:
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QGraphicsView *graphicsView;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *pushButtonBack;
     QPushButton *dfsButton;
@@ -43,22 +43,22 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         graphicsView = new QGraphicsView(layoutWidget);
         graphicsView->setObjectName("graphicsView");
-        graphicsView->setStyleSheet(QString::fromUtf8("background:transparent;"));
+        graphicsView->setStyleSheet(QString::fromUtf8("background:rgba(0,0,0,0.5);"));
 
         horizontalLayout->addWidget(graphicsView);
 
-        widget = new QWidget(DFS);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(0, 610, 169, 26));
-        horizontalLayout_3 = new QHBoxLayout(widget);
+        layoutWidget1 = new QWidget(DFS);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(0, 610, 169, 26));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        pushButtonBack = new QPushButton(widget);
+        pushButtonBack = new QPushButton(layoutWidget1);
         pushButtonBack->setObjectName("pushButtonBack");
 
         horizontalLayout_3->addWidget(pushButtonBack);
 
-        dfsButton = new QPushButton(widget);
+        dfsButton = new QPushButton(layoutWidget1);
         dfsButton->setObjectName("dfsButton");
 
         horizontalLayout_3->addWidget(dfsButton);

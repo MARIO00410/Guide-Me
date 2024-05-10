@@ -25,6 +25,11 @@ BFS::BFS(QWidget *parent)
 {
     ui->setupUi(this);
     //ui->textEdit->setReadOnly(true);
+    QPixmap bkgnd("C:\\Users\\youss\\OneDrive\\Desktop\\WhatsApp_Image_2024-04-13_at_19.31.07_8e45379f.jpg");
+    bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
 
     // Create a new QGraphicsScene and set it to the QGraphicsView
     QGraphicsScene *scene = new QGraphicsScene();
@@ -123,15 +128,15 @@ void printPath(vector<PrintSegment>& path, QGraphicsScene* scene, string source)
         QLabel *transportationLabel = new QLabel(QString::fromStdString(path[j+1].method));
         transportationLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
 
-        transportationLabel->setGeometry(midX, midY-15, 50, 20); // Adjust size as needed
-
+        transportationLabel->setGeometry(midX, midY-5, 50, 20); // Adjust size as needed
+        transportationLabel->setStyleSheet("background-color: rgba(0,0,0,0%)");
         scene->addWidget(transportationLabel); // Add the label to the scene
 
 
         QLabel *moneyLabel = new QLabel(QString::fromStdString(to_string(path[j+1].price)));
         moneyLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
-
-        moneyLabel->setGeometry(midX, midY+15, 50, 20); // Adjust size as needed
+        moneyLabel->setStyleSheet("background-color: rgba(0,0,0,0%)");
+        moneyLabel->setGeometry(midX, midY+20, 50, 20); // Adjust size as needed
 
         scene->addWidget(moneyLabel);
 
@@ -148,7 +153,7 @@ void printPath(vector<PrintSegment>& path, QGraphicsScene* scene, string source)
     totalLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
 
     totalLabel->setGeometry(x, yOffset, 250, 20); // Adjust size as needed
-
+    totalLabel->setStyleSheet("background-color: rgba(0,0,0,0%)");
     scene->addWidget(totalLabel);
 
 }

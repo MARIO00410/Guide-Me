@@ -18,7 +18,11 @@ HomePage::HomePage(QWidget *parent)
         ui->comboBox_To->addItem(QString::fromStdString(item));
     }
 
-
+    QPixmap bkgnd("C:\\Users\\youss\\OneDrive\\Desktop\\Untitled-3.jpg");
+    bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
 
 }
 
