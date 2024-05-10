@@ -12,20 +12,22 @@
 #include <QPainter>
 #include<QTimer>
 #include <cstdlib>
-#include <chrono>
 #include <QThread>
+#include <QLabel>
+#include <qDebug>
+
 
 DFS::DFS(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::DFS)
 {
     ui->setupUi(this);
-    ui->textEdit->setReadOnly(true);
+    //ui->textEdit->setReadOnly(true);
     QGraphicsScene *scene = new QGraphicsScene();
-    ui->graphicsView->setScene(scene);
-    view=ui->graphicsView;
-    view->setGeometry(0,0,700,550);
-    ui->graphicsView->setRenderHint(QPainter::Antialiasing);
+    view = ui->graphicsView; // Initialize view
+    view->setScene(scene);
+    view->setGeometry(0, 0, 700, 550);
+    view->setRenderHint(QPainter::Antialiasing);
 }
 
 
@@ -93,7 +95,8 @@ void DFS::on_dfsButton_clicked()
         Route += ("\n TotalAmount "+ to_string(TotalAmount) +'\n');
     }
 
-    ui->textEdit->setText(Route);
+    //ui->textEdit->setText(Route);
+    qDebug() << Route;
     ui->dfsButton->setEnabled(false);
 
 
@@ -110,7 +113,7 @@ void DFS::on_dfsButton_clicked()
         NodeItem *prev=sourceNode;
         for (int j = 0; j < numNodes; j++) {
             NodeItem *node = new NodeItem(QString::fromStdString(path[i][j].destination));
-            qreal x = xOffset + (j+1) * 150; ; // Adjust x position based on j and numNodes
+            qreal x = xOffset + (j + 1) * 150;
             // Keep y position same for all nodes in the row
             qreal y = yOffset ;
             node->setPos(x, y);
@@ -120,6 +123,35 @@ void DFS::on_dfsButton_clicked()
 
             EdgeItem *edge=new EdgeItem(prev,node);
             scene->addItem(edge);
+
+            qreal midX = (prev->pos().x() + node->pos().x()) / 2.0;
+            qreal midY = (prev->pos().y() + node->pos().y()) / 2.0; // Adjust y to position the label above the edge
+
+            // Create a label for the transportation method and position it above the edge
+            QLabel *transportationLabel = new QLabel(QString::fromStdString(path[i][j].transportation));
+            transportationLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
+
+            transportationLabel->setGeometry(midX, midY-15, 50, 20); // Adjust size as needed
+
+            scene->addWidget(transportationLabel); // Add the label to the scene
+
+
+            QLabel *moneyLabel = new QLabel(QString::fromStdString(to_string(path[i][j].money)));
+            moneyLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
+
+            moneyLabel->setGeometry(midX, midY+15, 50, 20); // Adjust size as needed
+
+            scene->addWidget(moneyLabel);
+
+            qreal xTotal = xOffset + (numNodes+0.5) * 150;
+
+
+            QLabel *totalLabel = new QLabel(QString::fromStdString("Total Price: " + to_string(TotalAmount)));
+            totalLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
+
+            totalLabel->setGeometry(xTotal, y, 250, 20); // Adjust size as needed
+
+            scene->addWidget(totalLabel);
 
             prev= node;
         }

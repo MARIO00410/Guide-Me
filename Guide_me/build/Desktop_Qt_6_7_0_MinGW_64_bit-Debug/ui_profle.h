@@ -22,7 +22,7 @@ QT_BEGIN_NAMESPACE
 class Ui_Profle
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *pushButton_Info;
     QHBoxLayout *horizontalLayout;
@@ -33,26 +33,26 @@ public:
     {
         if (Profle->objectName().isEmpty())
             Profle->setObjectName("Profle");
-        Profle->resize(605, 396);
-        widget = new QWidget(Profle);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(40, 50, 211, 161));
-        verticalLayout = new QVBoxLayout(widget);
+        Profle->resize(750, 650);
+        layoutWidget = new QWidget(Profle);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(260, 210, 211, 161));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton_Info = new QPushButton(widget);
+        pushButton_Info = new QPushButton(layoutWidget);
         pushButton_Info->setObjectName("pushButton_Info");
 
         verticalLayout->addWidget(pushButton_Info);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
-        pushButton_back = new QPushButton(widget);
+        pushButton_back = new QPushButton(layoutWidget);
         pushButton_back->setObjectName("pushButton_back");
 
         horizontalLayout->addWidget(pushButton_back);
 
-        pushButton_logout = new QPushButton(widget);
+        pushButton_logout = new QPushButton(layoutWidget);
         pushButton_logout->setObjectName("pushButton_logout");
 
         horizontalLayout->addWidget(pushButton_logout);

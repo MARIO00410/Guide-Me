@@ -13,6 +13,13 @@ Login::Login(QWidget *parent)
     , ui(new Ui::Login)
 {
     ui->setupUi(this);
+
+
+    QPixmap bkgnd("C:\\Users\\youss\\Downloads\\_9ca52c9a-e482-4813-897e-b5e41dc53665.jpeg");
+    bkgnd = bkgnd.scaled(this->size());
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
 }
 bool Login::checkCredentials(const QString &username, const QString &password) {
     for(int i=0;i<Data::users.size();i++){

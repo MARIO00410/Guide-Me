@@ -13,6 +13,8 @@
 #include <QGraphicsView>
 #include <QGraphicsItem>
 #include <QPainter>
+#include <QLabel>
+#include <qDebug>
 
 QString Route="";
 int off=0;
@@ -22,7 +24,7 @@ BFS::BFS(QWidget *parent)
     , ui(new Ui::BFS)
 {
     ui->setupUi(this);
-    ui->textEdit->setReadOnly(true);
+    //ui->textEdit->setReadOnly(true);
 
     // Create a new QGraphicsScene and set it to the QGraphicsView
     QGraphicsScene *scene = new QGraphicsScene();
@@ -76,55 +78,81 @@ string generatePathKey(vector<PrintSegment>& path) {
 
 void printPath(vector<PrintSegment>& path, QGraphicsScene* scene, string source) {
     string key = generatePathKey(path);
-    //path exist return pointer point to element if not exist return pointer point to end element of the set
+
     if (printedPaths.find(key) != printedPaths.end()) {
-        //  if pointer not point to end then it not exist then unique key
         return;
     }
     printedPaths.insert(key);
 
     int totalSpend = 0;
 
-    int *sizes=new int[path.size()];
-
-    for (int i = 0; i < path.size(); ++i) {
+    for (int i = 0; i < path.size(); i++) {
         Route += getCityById(path[i].cityId);
-        if(i!=path.size()-1)
-            Route+=" (" + path[i+1].method + ") ";
+        if (i != path.size() - 1) {
+            Route += " (" + path[i + 1].method + ") ";
+            Route += " -> ";
+        }
+        totalSpend += path[i].price;
+    }
+    Route += "\n Total Spend: " + to_string(totalSpend) + '\n';
 
-        if (i != path.size() - 1) Route += " -> ";
-            totalSpend += path[i].price;
+    int xOffset = 150;
+    NodeItem *sourceNode = new NodeItem(QString::fromStdString(source));
+    scene->addItem(sourceNode);
+    int numNodes = path.size();
+    int yOffset = 150 * off++;
+    sourceNode->setPos(xOffset, yOffset);
+    NodeItem *prev = sourceNode;
 
+    for (int j = 0; j < numNodes - 1 ; j++) {
+        NodeItem *node = new NodeItem(QString::fromStdString(getCityById(path[j + 1].cityId)));
+        qreal x = xOffset + (j + 1) * 150;
+        qreal y = yOffset ;
+        node->setPos(x, y);
+        scene->addItem(node);
+
+        // Create edge item
+        EdgeItem *edge = new EdgeItem(prev, node);
+        scene->addItem(edge);
+
+        // Calculate the midpoint of the edge for positioning the method label
+        qreal midX = (prev->pos().x() + node->pos().x()) / 2.0;
+        qreal midY = (prev->pos().y() + node->pos().y()) / 2.0; // Adjust y to position the label above the edge
+
+        // Create a label for the transportation method and position it above the edge
+        QLabel *transportationLabel = new QLabel(QString::fromStdString(path[j+1].method));
+        transportationLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
+
+        transportationLabel->setGeometry(midX, midY-15, 50, 20); // Adjust size as needed
+
+        scene->addWidget(transportationLabel); // Add the label to the scene
+
+
+        QLabel *moneyLabel = new QLabel(QString::fromStdString(to_string(path[j+1].price)));
+        moneyLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
+
+        moneyLabel->setGeometry(midX, midY+15, 50, 20); // Adjust size as needed
+
+        scene->addWidget(moneyLabel);
+
+
+
+
+
+        prev = node;
     }
 
-    Route+="\n Total Spend: " + to_string(totalSpend) + '\n';
+    qreal x = xOffset + (numNodes-0.5) * 150;
 
-        int xOffset = 150; // Calculate yOffset for the current row
+    QLabel *totalLabel = new QLabel(QString::fromStdString("Total Price: " + to_string(totalSpend)));
+    totalLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
 
-        // Add source node for each row
-        NodeItem *sourceNode = new NodeItem(QString::fromStdString(source));
-        // Adjust the position as needed
-        scene->addItem(sourceNode);
-        int numNodes = path.size();
-        int yOffset = 150 * off++; // Reset x-coordinate for each new path
-        sourceNode->setPos(xOffset,yOffset);
-        NodeItem *prev=sourceNode;
-        for (int j = 0; j < numNodes-1; j++) {
-            NodeItem *node = new NodeItem(QString::fromStdString(getCityById(path[j+1].cityId)));
-            qreal x = xOffset + (j+1) * 150; ; // Adjust x position based on j and numNodes
-            // Keep y position same for all nodes in the row
-            qreal y = yOffset ;
-            node->setPos(x, y);
+    totalLabel->setGeometry(x, yOffset, 250, 20); // Adjust size as needed
 
-            scene->addItem(node);
-
-            EdgeItem *edge=new EdgeItem(prev,node);
-            scene->addItem(edge);
-
-            prev= node;
-        }
+    scene->addWidget(totalLabel);
 
 }
+
 
 
 
@@ -187,7 +215,9 @@ void BFS::on_showRoute_clicked()
     string destination = readGraph.GoTo;
     int budget = readGraph.Budget;
     findPaths(readGraph.cityId[source], readGraph.cityId[destination], budget, scene, source);
-    ui->textEdit->setText(Route);
+    qDebug() << Route;
+    Route = "";
+    //ui->textEdit->setText(Route);
     ui->showRoute->setEnabled(false);
 }
 

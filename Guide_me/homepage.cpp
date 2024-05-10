@@ -4,6 +4,9 @@
 #include <dfs.h>
 #include <readgraph.h>
 #include <bfs.h>
+#include <QPainter>
+#include <QMovie>
+#include <QLabel>
 
 HomePage::HomePage(QWidget *parent)
     : QDialog(parent)
@@ -14,6 +17,9 @@ HomePage::HomePage(QWidget *parent)
         ui->comboBoxFrom->addItem(QString::fromStdString(item));
         ui->comboBox_To->addItem(QString::fromStdString(item));
     }
+
+
+
 }
 
 HomePage::~HomePage()
@@ -32,26 +38,30 @@ void HomePage::on_pushButton_clicked()
 
 void HomePage::on_dfs_clicked()
 {
-    ReadGraph readGraph;
-    readGraph.StartFrom = ui->comboBoxFrom->currentText().toStdString();
-    readGraph.GoTo = ui->comboBox_To->currentText().toStdString();
-    readGraph.Budget = ui->lineEditBudget->text().toInt();
-    DFS dfs;
-    dfs.setModal(true);
-    hide();
-    dfs.exec();
+    if(ui->comboBoxFrom->currentText().toStdString()!=ui->comboBox_To->currentText().toStdString()){
+        ReadGraph readGraph;
+        readGraph.StartFrom = ui->comboBoxFrom->currentText().toStdString();
+        readGraph.GoTo = ui->comboBox_To->currentText().toStdString();
+        readGraph.Budget = ui->lineEditBudget->text().toInt();
+        DFS dfs;
+        dfs.setModal(true);
+        hide();
+        dfs.exec();
+    }
 }
 
 
 void HomePage::on_BFS_clicked()
 {
-    ReadGraph readGraph;
-    readGraph.StartFrom = ui->comboBoxFrom->currentText().toStdString();
-    readGraph.GoTo = ui->comboBox_To->currentText().toStdString();
-    readGraph.Budget = ui->lineEditBudget->text().toInt();
-    BFS bfs;
-    bfs.setModal(true);
-    hide();
-    bfs.exec();
+    if(ui->comboBoxFrom->currentText().toStdString()!=ui->comboBox_To->currentText().toStdString()){
+        ReadGraph readGraph;
+        readGraph.StartFrom = ui->comboBoxFrom->currentText().toStdString();
+        readGraph.GoTo = ui->comboBox_To->currentText().toStdString();
+        readGraph.Budget = ui->lineEditBudget->text().toInt();
+        BFS bfs;
+        bfs.setModal(true);
+        hide();
+        bfs.exec();
+    }
 }
 

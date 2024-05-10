@@ -25,7 +25,7 @@ QT_BEGIN_NAMESPACE
 class Ui_Login
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
     QGroupBox *login_groupBox;
     QVBoxLayout *verticalLayout;
@@ -44,19 +44,21 @@ public:
     {
         if (Login->objectName().isEmpty())
             Login->setObjectName("Login");
-        Login->resize(529, 454);
-        widget = new QWidget(Login);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(30, 120, 461, 171));
-        verticalLayout_2 = new QVBoxLayout(widget);
+        Login->resize(750, 650);
+        layoutWidget = new QWidget(Login);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(160, 240, 411, 180));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        login_groupBox = new QGroupBox(widget);
+        login_groupBox = new QGroupBox(layoutWidget);
         login_groupBox->setObjectName("login_groupBox");
         QFont font;
         font.setFamilies({QString::fromUtf8("Times New Roman")});
         font.setBold(true);
         login_groupBox->setFont(font);
+        login_groupBox->setStyleSheet(QString::fromUtf8("background-color: rgba(0, 0, 0, 0.5);\n"
+""));
         verticalLayout = new QVBoxLayout(login_groupBox);
         verticalLayout->setObjectName("verticalLayout");
         horizontalLayout_2 = new QHBoxLayout();
@@ -111,15 +113,19 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        ask_label = new QLabel(widget);
+        ask_label = new QLabel(layoutWidget);
         ask_label->setObjectName("ask_label");
         ask_label->setFont(font);
+        ask_label->setStyleSheet(QString::fromUtf8("background-color: rgba(0, 0, 0, 0.5);\n"
+""));
 
         horizontalLayout_3->addWidget(ask_label);
 
-        signup_button = new QPushButton(widget);
+        signup_button = new QPushButton(layoutWidget);
         signup_button->setObjectName("signup_button");
         signup_button->setFont(font1);
+        signup_button->setStyleSheet(QString::fromUtf8("background-color: rgba(0, 0, 0, 0.5);\n"
+""));
 
         horizontalLayout_3->addWidget(signup_button);
 

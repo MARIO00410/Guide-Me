@@ -3,6 +3,7 @@
 #include <data.h>
 #include"homepage.h"
 #include <QApplication>
+#include <Login.h>
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +11,7 @@ int main(int argc, char *argv[])
     ReadGraph::GetGraph();
     Data::ReadFile();
     QApplication a(argc, argv);
-    HomePage w;
+    Login w;
     w.show();
     return a.exec();
 }

@@ -5,6 +5,8 @@
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QGraphicsLineItem>
+#include <QLabel>
+
 EdgeItem::EdgeItem(NodeItem *sourceNode, NodeItem *destNode) {
  source= sourceNode;
  dest=destNode;
@@ -22,4 +24,5 @@ void EdgeItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
    // QGraphicsLineItem *an=new QGraphicsLineItem(line);
     painter->setPen(Qt::white); // Edge color
     painter->drawLine(line); // Draw a line between the source and destination nodes
+
 }

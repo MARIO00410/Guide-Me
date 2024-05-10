@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>529</width>
-    <height>454</height>
+    <width>750</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>120</y>
-     <width>461</width>
-     <height>171</height>
+     <x>160</x>
+     <y>240</y>
+     <width>411</width>
+     <height>180</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -30,6 +30,10 @@
         <family>Times New Roman</family>
         <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(0, 0, 0, 0.5);
+</string>
       </property>
       <property name="title">
        <string>Log In</string>
@@ -108,6 +112,10 @@
           <bold>true</bold>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0.5);
+</string>
+        </property>
         <property name="text">
          <string>Don't have an account?</string>
         </property>
@@ -121,6 +129,10 @@
           <pointsize>12</pointsize>
           <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(0, 0, 0, 0.5);
+</string>
         </property>
         <property name="text">
          <string>Sign Up</string>
