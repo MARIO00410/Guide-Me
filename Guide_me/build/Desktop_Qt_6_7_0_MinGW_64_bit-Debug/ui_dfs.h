@@ -12,23 +12,46 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTextEdit>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_DFS
 {
 public:
+    QWidget *layoutWidget;
+    QHBoxLayout *horizontalLayout;
+    QTextEdit *textEdit;
     QPushButton *dfsButton;
+    QPushButton *pushButtonBack;
 
     void setupUi(QDialog *DFS)
     {
         if (DFS->objectName().isEmpty())
             DFS->setObjectName("DFS");
-        DFS->resize(400, 300);
-        dfsButton = new QPushButton(DFS);
+        DFS->resize(836, 511);
+        layoutWidget = new QWidget(DFS);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(10, 10, 821, 461));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
+        horizontalLayout->setObjectName("horizontalLayout");
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        textEdit = new QTextEdit(layoutWidget);
+        textEdit->setObjectName("textEdit");
+
+        horizontalLayout->addWidget(textEdit);
+
+        dfsButton = new QPushButton(layoutWidget);
         dfsButton->setObjectName("dfsButton");
-        dfsButton->setGeometry(QRect(140, 90, 80, 18));
+
+        horizontalLayout->addWidget(dfsButton);
+
+        pushButtonBack = new QPushButton(DFS);
+        pushButtonBack->setObjectName("pushButtonBack");
+        pushButtonBack->setGeometry(QRect(80, 480, 80, 24));
 
         retranslateUi(DFS);
 
@@ -38,7 +61,8 @@ public:
     void retranslateUi(QDialog *DFS)
     {
         DFS->setWindowTitle(QCoreApplication::translate("DFS", "Dialog", nullptr));
-        dfsButton->setText(QCoreApplication::translate("DFS", "PushButton", nullptr));
+        dfsButton->setText(QCoreApplication::translate("DFS", "Show Route", nullptr));
+        pushButtonBack->setText(QCoreApplication::translate("DFS", "Back", nullptr));
     } // retranslateUi
 
 };

@@ -25,6 +25,8 @@ QT_BEGIN_NAMESPACE
 class Ui_Login
 {
 public:
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_2;
     QGroupBox *login_groupBox;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
@@ -34,7 +36,6 @@ public:
     QLabel *label_password;
     QLineEdit *login_password_field;
     QPushButton *login_button;
-    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_3;
     QLabel *ask_label;
     QPushButton *signup_button;
@@ -43,10 +44,15 @@ public:
     {
         if (Login->objectName().isEmpty())
             Login->setObjectName("Login");
-        Login->resize(1192, 668);
-        login_groupBox = new QGroupBox(Login);
+        Login->resize(529, 454);
+        widget = new QWidget(Login);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(30, 120, 461, 171));
+        verticalLayout_2 = new QVBoxLayout(widget);
+        verticalLayout_2->setObjectName("verticalLayout_2");
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        login_groupBox = new QGroupBox(widget);
         login_groupBox->setObjectName("login_groupBox");
-        login_groupBox->setGeometry(QRect(360, 170, 531, 281));
         QFont font;
         font.setFamilies({QString::fromUtf8("Times New Roman")});
         font.setBold(true);
@@ -100,23 +106,25 @@ public:
 
         verticalLayout->addWidget(login_button);
 
-        layoutWidget = new QWidget(Login);
-        layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(360, 450, 531, 33));
-        horizontalLayout_3 = new QHBoxLayout(layoutWidget);
+
+        verticalLayout_2->addWidget(login_groupBox);
+
+        horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        ask_label = new QLabel(layoutWidget);
+        ask_label = new QLabel(widget);
         ask_label->setObjectName("ask_label");
         ask_label->setFont(font);
 
         horizontalLayout_3->addWidget(ask_label);
 
-        signup_button = new QPushButton(layoutWidget);
+        signup_button = new QPushButton(widget);
         signup_button->setObjectName("signup_button");
         signup_button->setFont(font1);
 
         horizontalLayout_3->addWidget(signup_button);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_3);
 
 
         retranslateUi(Login);
@@ -129,7 +137,7 @@ public:
         Login->setWindowTitle(QCoreApplication::translate("Login", "Dialog", nullptr));
         login_groupBox->setTitle(QCoreApplication::translate("Login", "Log In", nullptr));
         label_username->setText(QCoreApplication::translate("Login", "UserName:", nullptr));
-        label_password->setText(QCoreApplication::translate("Login", "Password:", nullptr));
+        label_password->setText(QCoreApplication::translate("Login", "Password :  ", nullptr));
         login_button->setText(QCoreApplication::translate("Login", "Log In", nullptr));
         ask_label->setText(QCoreApplication::translate("Login", "Don't have an account?", nullptr));
         signup_button->setText(QCoreApplication::translate("Login", "Sign Up", nullptr));

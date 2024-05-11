@@ -23,6 +23,8 @@ private slots:
 
     void on_login_main_button_clicked();
 
+
+
 private:
     Ui::MainWindow *ui;
 };

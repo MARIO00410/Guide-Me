@@ -12,7 +12,7 @@ vector<int> ReadGraph::adjList[500];
 bool ReadGraph::is_read = false;
 
 vector<string> ReadGraph::Cities;
-map<string,int>cits;
+map<string,int>ReadGraph::cits;
 
 string ReadGraph::StartFrom;
 string ReadGraph::GoTo;
@@ -31,13 +31,13 @@ void addEdge(const std::string& line) {
     const string& src = tokens[0];
     const string& dest = tokens[2];
 
-    if(cits[src]==0){
+    if( ReadGraph::cits[src]==0){
         ReadGraph::Cities.push_back(src);
-        cits[src]++;
+         ReadGraph::cits[src]++;
     }
-    if(cits[dest]==0){
+    if( ReadGraph::cits[dest]==0){
         ReadGraph::Cities.push_back(dest);
-        cits[dest]++;
+         ReadGraph::cits[dest]++;
     }
 
     for (int i = 3; i < tokens.size(); i += 2) {
@@ -61,7 +61,7 @@ void ReadGraph::GetGraph() {
         qInfo() << "graph already read";
         return;
     }
-    const QString fileName = "graph.txt";
+    const QString fileName = "E:\TransportationMap.txt";
     QFile file(fileName);
 
     if (!file.exists()) {
@@ -76,14 +76,37 @@ void ReadGraph::GetGraph() {
 
     QTextStream stream(&file);
 
-    QString line = stream.readLine().trimmed();
-    while (!stream.atEnd()) {
+    int n = stream.readLine().trimmed().toInt();
+    while(n--) {
         QString line = stream.readLine().trimmed();
         if (!line.isEmpty()) {
             addEdge(line.toStdString());
         }
     }
-
+    qInfo() << graph.size();
     file.close();
     is_read = true;
+}
+bool ReadGraph :: writeFile() {
+    const QString fileName = "E:\TransportationMap.txt";
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qCritical() << "Failed to open file for writing: " << file.errorString();
+        return false;
+    }
+  QTextStream stream(&file);
+    stream << Cities.size() << "\n";
+
+    // Write the graph edges
+    for (const auto& city : Cities) {
+        for (const auto& path : graph[city]) {
+            stream << city.c_str() << " - " << path.destination.c_str() << " ";
+            for (const auto& transport : graph[city]) {
+                stream << transport.transportation.c_str() << " " << transport.money << " ";
+            }
+            stream << "\n";
+        }
+    }
+    file.close();
+    return true;
 }

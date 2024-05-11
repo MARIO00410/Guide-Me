@@ -4,6 +4,9 @@
 #include <dfs.h>
 #include <readgraph.h>
 #include <bfs.h>
+#include"add.h"
+#include"delete.h"
+#include"update_transportation.h"
 
 HomePage::HomePage(QWidget *parent)
     : QDialog(parent)
@@ -14,6 +17,7 @@ HomePage::HomePage(QWidget *parent)
         ui->comboBoxFrom->addItem(QString::fromStdString(item));
         ui->comboBox_To->addItem(QString::fromStdString(item));
     }
+
 }
 
 HomePage::~HomePage()
@@ -53,5 +57,32 @@ void HomePage::on_BFS_clicked()
     bfs.setModal(true);
     hide();
     bfs.exec();
+}
+
+
+void HomePage::on_pushButton_2_clicked()
+{
+    add trans ;
+    trans.setModal(true);
+    hide();
+    trans.exec();
+}
+
+
+void HomePage::on_pushButton_3_clicked()
+{
+    Delete trans ;
+    trans.setModal(true);
+    hide();
+    trans.exec();
+}
+
+
+void HomePage::on_pushButton_update_clicked()
+{
+    update_transportation u;
+    u.setModal(true);
+    hide();
+    u.exec();
 }
 

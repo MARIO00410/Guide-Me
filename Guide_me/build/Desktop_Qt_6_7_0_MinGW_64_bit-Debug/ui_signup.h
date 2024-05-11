@@ -27,7 +27,7 @@ class Ui_SignUp
 {
 public:
     QGroupBox *groupBox;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_6;
@@ -63,14 +63,14 @@ public:
     {
         if (SignUp->objectName().isEmpty())
             SignUp->setObjectName("SignUp");
-        SignUp->resize(852, 545);
+        SignUp->resize(605, 376);
         groupBox = new QGroupBox(SignUp);
         groupBox->setObjectName("groupBox");
-        groupBox->setGeometry(QRect(30, 10, 781, 501));
-        widget = new QWidget(groupBox);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(50, 100, 701, 200));
-        verticalLayout_2 = new QVBoxLayout(widget);
+        groupBox->setGeometry(QRect(10, 10, 571, 341));
+        layoutWidget = new QWidget(groupBox);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(10, 40, 531, 211));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget);
         verticalLayout_2->setSpacing(15);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -81,12 +81,12 @@ public:
         horizontalLayout_6->setObjectName("horizontalLayout_6");
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName("label");
 
         horizontalLayout->addWidget(label);
 
-        fNameLineEdit = new QLineEdit(widget);
+        fNameLineEdit = new QLineEdit(layoutWidget);
         fNameLineEdit->setObjectName("fNameLineEdit");
 
         horizontalLayout->addWidget(fNameLineEdit);
@@ -96,12 +96,12 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName("horizontalLayout_2");
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName("label_2");
 
         horizontalLayout_2->addWidget(label_2);
 
-        lNameLineEdit = new QLineEdit(widget);
+        lNameLineEdit = new QLineEdit(layoutWidget);
         lNameLineEdit->setObjectName("lNameLineEdit");
 
         horizontalLayout_2->addWidget(lNameLineEdit);
@@ -114,12 +114,12 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(layoutWidget);
         label_3->setObjectName("label_3");
 
         horizontalLayout_3->addWidget(label_3);
 
-        uNameLineEdit = new QLineEdit(widget);
+        uNameLineEdit = new QLineEdit(layoutWidget);
         uNameLineEdit->setObjectName("uNameLineEdit");
 
         horizontalLayout_3->addWidget(uNameLineEdit);
@@ -129,13 +129,14 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName("horizontalLayout_4");
-        label_4 = new QLabel(widget);
+        label_4 = new QLabel(layoutWidget);
         label_4->setObjectName("label_4");
 
         horizontalLayout_4->addWidget(label_4);
 
-        PassLineEdit = new QLineEdit(widget);
+        PassLineEdit = new QLineEdit(layoutWidget);
         PassLineEdit->setObjectName("PassLineEdit");
+        PassLineEdit->setEchoMode(QLineEdit::Password);
 
         horizontalLayout_4->addWidget(PassLineEdit);
 
@@ -144,13 +145,14 @@ public:
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName("horizontalLayout_5");
-        label_5 = new QLabel(widget);
+        label_5 = new QLabel(layoutWidget);
         label_5->setObjectName("label_5");
 
         horizontalLayout_5->addWidget(label_5);
 
-        cPassLineEdit = new QLineEdit(widget);
+        cPassLineEdit = new QLineEdit(layoutWidget);
         cPassLineEdit->setObjectName("cPassLineEdit");
+        cPassLineEdit->setEchoMode(QLineEdit::Password);
 
         horizontalLayout_5->addWidget(cPassLineEdit);
 
@@ -166,12 +168,12 @@ public:
         horizontalLayout_10->setObjectName("horizontalLayout_10");
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName("horizontalLayout_7");
-        label_6 = new QLabel(widget);
+        label_6 = new QLabel(layoutWidget);
         label_6->setObjectName("label_6");
 
         horizontalLayout_7->addWidget(label_6);
 
-        CountryLineEdit = new QLineEdit(widget);
+        CountryLineEdit = new QLineEdit(layoutWidget);
         CountryLineEdit->setObjectName("CountryLineEdit");
 
         horizontalLayout_7->addWidget(CountryLineEdit);
@@ -181,12 +183,12 @@ public:
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setObjectName("horizontalLayout_8");
-        label_7 = new QLabel(widget);
+        label_7 = new QLabel(layoutWidget);
         label_7->setObjectName("label_7");
 
         horizontalLayout_8->addWidget(label_7);
 
-        GenderComboBox = new QComboBox(widget);
+        GenderComboBox = new QComboBox(layoutWidget);
         GenderComboBox->setObjectName("GenderComboBox");
 
         horizontalLayout_8->addWidget(GenderComboBox);
@@ -199,12 +201,12 @@ public:
 
         horizontalLayout_9 = new QHBoxLayout();
         horizontalLayout_9->setObjectName("horizontalLayout_9");
-        label_8 = new QLabel(widget);
+        label_8 = new QLabel(layoutWidget);
         label_8->setObjectName("label_8");
 
         horizontalLayout_9->addWidget(label_8);
 
-        AgeLineEdit = new QLineEdit(widget);
+        AgeLineEdit = new QLineEdit(layoutWidget);
         AgeLineEdit->setObjectName("AgeLineEdit");
 
         horizontalLayout_9->addWidget(AgeLineEdit);
@@ -217,7 +219,7 @@ public:
 
         pushButton = new QPushButton(groupBox);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(350, 320, 80, 24));
+        pushButton->setGeometry(QRect(230, 280, 80, 24));
 
         retranslateUi(SignUp);
 
@@ -231,7 +233,7 @@ public:
         label->setText(QCoreApplication::translate("SignUp", "First Name:", nullptr));
         label_2->setText(QCoreApplication::translate("SignUp", "Last Name:", nullptr));
         label_3->setText(QCoreApplication::translate("SignUp", "User Name:", nullptr));
-        label_4->setText(QCoreApplication::translate("SignUp", "Password", nullptr));
+        label_4->setText(QCoreApplication::translate("SignUp", "Password    ", nullptr));
         label_5->setText(QCoreApplication::translate("SignUp", "Confirm Password", nullptr));
         label_6->setText(QCoreApplication::translate("SignUp", "Country", nullptr));
         label_7->setText(QCoreApplication::translate("SignUp", "Gender", nullptr));

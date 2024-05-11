@@ -89,6 +89,11 @@ bool isNotVisited(int nodeId, const vector<PrintSegment>& path) {
     return true;
 }
 
+// void deletePath(int money, string dest, string transportation, string src)
+//  {
+
+//  }
+
 void findPaths(int sourceId, int destId, int budget) {
     priority_queue<vector<PrintSegment>, vector<vector<PrintSegment>>, ComparePaths> pq;
     vector<PrintSegment> initialPath = {{sourceId, "", 0} };
