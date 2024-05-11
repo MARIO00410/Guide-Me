@@ -1,6 +1,7 @@
 release/add.o
 release/bfs.o
 release/data.o
+release/delete.o
 release/functions.o
 release/homepage.o
 release/info.o
@@ -15,6 +16,7 @@ release/signup.o
 release/user.o
 release/moc_add.o
 release/moc_bfs.o
+release/moc_delete.o
 release/moc_functions.o
 release/moc_homepage.o
 release/moc_info.o

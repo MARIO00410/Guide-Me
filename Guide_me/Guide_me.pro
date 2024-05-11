@@ -24,6 +24,7 @@ SOURCES += \
     path.cpp \
     readgraph.cpp \
     signup.cpp \
+    update.cpp \
     user.cpp
 
 HEADERS += \
@@ -32,6 +33,7 @@ HEADERS += \
     delete.h \
     functions.h \
     readgraph.h \
+    update.h \
     user.h \
     data.h \
     homepage.h \
@@ -54,7 +56,8 @@ FORMS += \
     dfs.ui \
     login.ui \
     mainwindow.ui \
-    profle.ui
+    profle.ui \
+    update.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

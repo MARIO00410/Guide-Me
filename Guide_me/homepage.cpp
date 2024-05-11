@@ -5,6 +5,7 @@
 #include <readgraph.h>
 #include <bfs.h>
 #include"add.h"
+#include"delete.h"
 
 HomePage::HomePage(QWidget *parent)
     : QDialog(parent)
@@ -60,6 +61,15 @@ void HomePage::on_BFS_clicked()
 void HomePage::on_pushButton_2_clicked()
 {
     add trans ;
+    trans.setModal(true);
+    hide();
+    trans.exec();
+}
+
+
+void HomePage::on_pushButton_3_clicked()
+{
+    Delete trans ;
     trans.setModal(true);
     hide();
     trans.exec();

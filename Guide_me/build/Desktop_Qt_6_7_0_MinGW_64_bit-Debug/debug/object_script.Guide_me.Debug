@@ -1,6 +1,7 @@
 debug/add.o
 debug/bfs.o
 debug/data.o
+debug/delete.o
 debug/functions.o
 debug/homepage.o
 debug/info.o
@@ -15,6 +16,7 @@ debug/signup.o
 debug/user.o
 debug/moc_add.o
 debug/moc_bfs.o
+debug/moc_delete.o
 debug/moc_functions.o
 debug/moc_homepage.o
 debug/moc_info.o
