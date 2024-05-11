@@ -44,7 +44,7 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
+    QPushButton *pushButton_update;
 
     void setupUi(QDialog *HomePage)
     {
@@ -56,7 +56,7 @@ public:
         pushButton->setGeometry(QRect(30, 20, 80, 24));
         layoutWidget = new QWidget(HomePage);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(80, 120, 311, 99));
+        layoutWidget->setGeometry(QRect(80, 120, 311, 101));
         verticalLayout_2 = new QVBoxLayout(layoutWidget);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -136,10 +136,10 @@ public:
 
         horizontalLayout_4->addWidget(pushButton_3);
 
-        pushButton_4 = new QPushButton(layoutWidget1);
-        pushButton_4->setObjectName("pushButton_4");
+        pushButton_update = new QPushButton(layoutWidget1);
+        pushButton_update->setObjectName("pushButton_update");
 
-        horizontalLayout_4->addWidget(pushButton_4);
+        horizontalLayout_4->addWidget(pushButton_update);
 
 
         retranslateUi(HomePage);
@@ -158,7 +158,7 @@ public:
         BFS->setText(QCoreApplication::translate("HomePage", "BFS", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HomePage", " add", nullptr));
         pushButton_3->setText(QCoreApplication::translate("HomePage", "del", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("HomePage", "update", nullptr));
+        pushButton_update->setText(QCoreApplication::translate("HomePage", "update", nullptr));
     } // retranslateUi
 
 };

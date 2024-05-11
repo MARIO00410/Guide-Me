@@ -1,6 +1,7 @@
 #ifndef HOMEPAGE_H
 #define HOMEPAGE_H
 
+#include"profle.h"
 #include <QDialog>
 
 namespace Ui {
@@ -26,7 +27,12 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+
+
+    void on_pushButton_update_clicked();
+
 private:
+    Profle r;
     Ui::HomePage *ui;
 };
 

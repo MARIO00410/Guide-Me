@@ -13,11 +13,13 @@ debug/dfs.o
 debug/path.o
 debug/readgraph.o
 debug/signup.o
+debug/update_transportation.o
 debug/user.o
 debug/moc_add.o
 debug/moc_bfs.o
 debug/moc_delete.o
 debug/moc_functions.o
+debug/moc_update_transportation.o
 debug/moc_homepage.o
 debug/moc_info.o
 debug/moc_login.o

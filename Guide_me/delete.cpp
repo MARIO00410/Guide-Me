@@ -20,14 +20,12 @@ void Delete:: del(string src,string dest,string transportation)
          {
             ReadGraph::graph[src].erase(ReadGraph::graph[src].begin()+i);
          }
+            if(ReadGraph::graph[dest][i].transportation==transportation && ReadGraph::graph[dest][i].destination==src)
+                   {
+                       ReadGraph::graph[dest].erase(ReadGraph::graph[dest].begin()+i);
+                   }
     }
-         //    for(int i=0;i<ReadGraph::graph[dest].size();i++)
-         // {
-         //    if(ReadGraph::graph[dest][i].transportation==transportation && ReadGraph::graph[dest][i].destination==src)
-         //    {
-         //        ReadGraph::graph[dest].erase(ReadGraph::graph[dest].begin()+i);
-         //    }
-         // }
+
 
 
     }

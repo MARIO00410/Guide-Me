@@ -6,6 +6,7 @@
 #include <bfs.h>
 #include"add.h"
 #include"delete.h"
+#include"update_transportation.h"
 
 HomePage::HomePage(QWidget *parent)
     : QDialog(parent)
@@ -16,6 +17,7 @@ HomePage::HomePage(QWidget *parent)
         ui->comboBoxFrom->addItem(QString::fromStdString(item));
         ui->comboBox_To->addItem(QString::fromStdString(item));
     }
+
 }
 
 HomePage::~HomePage()
@@ -73,5 +75,14 @@ void HomePage::on_pushButton_3_clicked()
     trans.setModal(true);
     hide();
     trans.exec();
+}
+
+
+void HomePage::on_pushButton_update_clicked()
+{
+    update_transportation u;
+    u.setModal(true);
+    hide();
+    u.exec();
 }
 

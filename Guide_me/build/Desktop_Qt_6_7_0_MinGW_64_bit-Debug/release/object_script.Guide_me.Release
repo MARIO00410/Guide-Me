@@ -13,11 +13,13 @@ release/dfs.o
 release/path.o
 release/readgraph.o
 release/signup.o
+release/update_transportation.o
 release/user.o
 release/moc_add.o
 release/moc_bfs.o
 release/moc_delete.o
 release/moc_functions.o
+release/moc_update_transportation.o
 release/moc_homepage.o
 release/moc_info.o
 release/moc_login.o
