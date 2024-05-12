@@ -1,0 +1,23 @@
+5
+Cairo - Giza Metro 30 Bus 60 Uber 230 Microbus 20 Bus 15 Train 250 Bus 450 
+Cairo - Giza Metro 30 Bus 60 Uber 230 Microbus 20 Bus 15 Train 250 Bus 450 
+Cairo - Giza Metro 30 Bus 60 Uber 230 Microbus 20 Bus 15 Train 250 Bus 450 
+Cairo - BeniSuef Metro 30 Bus 60 Uber 230 Microbus 20 Bus 15 Train 250 Bus 450 
+Cairo - BeniSuef Metro 30 Bus 60 Uber 230 Microbus 20 Bus 15 Train 250 Bus 450 
+Cairo - Asyut Metro 30 Bus 60 Uber 230 Microbus 20 Bus 15 Train 250 Bus 450 
+Cairo - Asyut Metro 30 Bus 60 Uber 230 Microbus 20 Bus 15 Train 250 Bus 450 
+Giza - Cairo Metro 30 Bus 60 Uber 230 Bus 500 Microbus 345 
+Giza - Cairo Metro 30 Bus 60 Uber 230 Bus 500 Microbus 345 
+Giza - Cairo Metro 30 Bus 60 Uber 230 Bus 500 Microbus 345 
+Giza - Dahab Metro 30 Bus 60 Uber 230 Bus 500 Microbus 345 
+Giza - Dahab Metro 30 Bus 60 Uber 230 Bus 500 Microbus 345 
+Dahab - Giza Bus 500 Microbus 345 Microbus 200 Bus 315 
+Dahab - Giza Bus 500 Microbus 345 Microbus 200 Bus 315 
+Dahab - BeniSuef Bus 500 Microbus 345 Microbus 200 Bus 315 
+Dahab - BeniSuef Bus 500 Microbus 345 Microbus 200 Bus 315 
+BeniSuef - Cairo Microbus 20 Bus 15 Microbus 200 Bus 315 
+BeniSuef - Cairo Microbus 20 Bus 15 Microbus 200 Bus 315 
+BeniSuef - Dahab Microbus 20 Bus 15 Microbus 200 Bus 315 
+BeniSuef - Dahab Microbus 20 Bus 15 Microbus 200 Bus 315 
+Asyut - Cairo Train 250 Bus 450 
+Asyut - Cairo Train 250 Bus 450 

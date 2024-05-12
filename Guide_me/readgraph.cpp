@@ -60,7 +60,7 @@ void ReadGraph::GetGraph() {
         qInfo() << "graph already read";
         return;
     }
-    const QString fileName = "D:/Downloads/TransportationMap.txt";
+    const QString fileName = "C:/g/Guide-Me/Guide_me/graph.txt";
     QFile file(fileName);
 
     if (!file.exists()) {
@@ -88,15 +88,15 @@ void ReadGraph::GetGraph() {
     is_read = true;
 }
 bool ReadGraph :: writeFile() {
-    const QString fileName = "E:\TransportationMap.txt";
+    const QString fileName = "C:/g/Guide-Me/Guide_me/test.txt";
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qCritical() << "Failed to open file for writing: " << file.errorString();
         return false;
     }
   QTextStream stream(&file);
-    stream << Cities.size() << "\n";
-
+    stream <<ReadGraph::Cities.size()<< "\n";
+  int n=ReadGraph::Cities.size();
     // Write the graph edges
     for (const auto& city : Cities) {
         for (const auto& path : graph[city]) {

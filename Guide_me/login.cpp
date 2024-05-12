@@ -9,7 +9,6 @@
 #include <signup.h>
 #include <homepage.h>
 #include <QMovie>
-
 Login::Login(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Login)
@@ -22,9 +21,8 @@ Login::Login(QWidget *parent)
     ui->background->setMovie(movie);
     movie->start();
 
-
-
 }
+
 bool Login::checkCredentials(const QString &username, const QString &password) {
     for(int i=0;i<Data::users.size();i++){
         if(username.toStdString()==Data::users[i].UserName && password.toStdString()==Data::users[i].Password){
@@ -64,5 +62,11 @@ void Login::on_signup_button_clicked()
     signup.setModal(true);
     hide();
     signup.exec();
+}
+
+
+void Login::on_Login_destroyed()
+{
+    qDebug()<<"ok";
 }
 

@@ -242,9 +242,7 @@ BFS::~BFS()
 void BFS::on_showRoute_clicked()
 {
     ReadGraph readGraph;
-    //readGraph.GetGraph();
     QGraphicsScene *scene = view -> scene();
-
     string source = readGraph.StartFrom;
     string destination = readGraph.GoTo;
     int budget = readGraph.Budget;
