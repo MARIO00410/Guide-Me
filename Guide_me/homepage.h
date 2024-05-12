@@ -22,6 +22,8 @@ private slots:
 
     void on_BFS_clicked();
 
+    void on_completeGraph_clicked();
+
 private:
     Ui::HomePage *ui;
 };

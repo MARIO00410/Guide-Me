@@ -18,7 +18,7 @@ Login::Login(QWidget *parent)
 
 
 
-    QMovie *movie = new QMovie("C:\\Users\\youss\\Downloads\\c0c02bafcfe60ea76d6d7eede8ec4564(1).gif");
+    QMovie *movie = new QMovie("C:/Users/mario/ya rb/c0c02bafcfe60ea76d6d7eede8ec4564(1).gif");
     ui->background->setMovie(movie);
     movie->start();
 

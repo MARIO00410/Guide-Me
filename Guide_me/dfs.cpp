@@ -1,6 +1,6 @@
 #include "dfs.h"
 #include "ui_dfs.h"
-#include "Path.h"
+#include "path.h"
 #include <QDialog>
 #include <homepage.h>
 #include <readgraph.h>
@@ -16,14 +16,13 @@
 #include <QLabel>
 #include <qDebug>
 
-
 DFS::DFS(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::DFS)
 {
     ui->setupUi(this);
     //ui->textEdit->setReadOnly(true);
-    QPixmap bkgnd("C:\\Users\\youss\\OneDrive\\Desktop\\WhatsApp_Image_2024-04-13_at_19.31.07_8e45379f.jpg");
+    QPixmap bkgnd("C:/Users/mario/ya rb/WhatsApp_Image_2024-04-13_at_19.31.07_8e45379f.jpg");
     bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
@@ -37,11 +36,11 @@ DFS::DFS(QWidget *parent)
 }
 
 
-void dfs(string from, string destination, int budget, vector<Path>& route,map<string, bool>& vis, vector<vector<Path>>& path) {
+void dfs(string from, string destination, int budget, vector<Path>& route,map<string, bool>& vis, vector<vector<Path>>& Way) {
     vis[from] = true;
 
     if (vis[destination]) {
-        path.push_back(route);
+        Way.push_back(route);
         vis[from] = false;
         return;
     }
@@ -53,7 +52,7 @@ void dfs(string from, string destination, int budget, vector<Path>& route,map<st
 
         if (vis[graph.at(from)[i].destination]!=true && budget - graph.at(from)[i].money >= 0) {
             route.push_back({ graph.at(from)[i].destination,graph.at(from)[i].money ,graph.at(from)[i].transportation});
-            dfs(graph.at(from)[i].destination,destination, budget -graph.at(from)[i].money,route, vis, path);
+            dfs(graph.at(from)[i].destination,destination, budget -graph.at(from)[i].money,route, vis, Way);
 
             route.pop_back();
             vis[graph.at(from)[i].destination] = false;
@@ -81,23 +80,23 @@ DFS::~DFS()
 
 void DFS::on_dfsButton_clicked()
 {
-    map<string, bool>vis;
-    vector<vector<Path>>path;
+    map<string, bool>vis;//visited map to check paths
+    vector<vector<Path>>Way;
 
     QString Route="";
     int TotalAmount;
     vector<int> totalPrices;
     vector<Path>route;
     string start=ReadGraph::StartFrom;
-    dfs(ReadGraph::StartFrom,ReadGraph::GoTo,ReadGraph::Budget,route, vis, path);
-    sort(path.begin(), path.end(), comparePathsByTotalAmount);
+    dfs(ReadGraph::StartFrom,ReadGraph::GoTo,ReadGraph::Budget,route, vis, Way);
+    sort(Way.begin(), Way.end(), comparePathsByTotalAmount);
 
-    for (size_t i = 0; i < path.size(); i++) {
+    for (size_t i = 0; i < Way.size(); i++) {
         TotalAmount = 0;
         Route += ReadGraph::StartFrom;
-        for (size_t j = 0; j < path[i].size(); j++) {
-            Route+=( " (" + path[i][j].transportation + ") -> " + path[i][j].destination);
-            TotalAmount += path[i][j].money;
+        for (size_t j = 0; j < Way[i].size(); j++) {
+            Route+=( " (" + Way[i][j].transportation + ") -> " + Way[i][j].destination);
+            TotalAmount += Way[i][j].money;
         }
         Route += ("\n TotalAmount "+ to_string(TotalAmount) +'\n');
         totalPrices.push_back(TotalAmount);
@@ -108,19 +107,19 @@ void DFS::on_dfsButton_clicked()
     ui->dfsButton->setEnabled(false);
 
 
-    for (int i = 0; i < path.size(); i++) {
+    for (int i = 0; i < Way.size(); i++) {
         int xOffset = 150; // Calculate yOffset for the current row
         QGraphicsScene *scene = view->scene();
         // Add source node for each row
         NodeItem *sourceNode = new NodeItem(QString::fromStdString(start));
         // Adjust the position as needed
         scene->addItem(sourceNode);
-        int numNodes = path[i].size();
-        int yOffset = 150 *(i); // Reset x-coordinate for each new path
+        int numNodes = Way[i].size();
+        int yOffset = 150 *(i); // Reset x-coordinate for each new Way
         sourceNode->setPos(xOffset,yOffset);
         NodeItem *prev=sourceNode;
         for (int j = 0; j < numNodes; j++) {
-            NodeItem *node = new NodeItem(QString::fromStdString(path[i][j].destination));
+            NodeItem *node = new NodeItem(QString::fromStdString(Way[i][j].destination));
             qreal x = xOffset + (j + 1) * 150;
             // Keep y position same for all nodes in the row
             qreal y = yOffset ;
@@ -136,15 +135,42 @@ void DFS::on_dfsButton_clicked()
             qreal midY = (prev->pos().y() + node->pos().y()) / 2.0; // Adjust y to position the label above the edge
 
             // Create a label for the transportation method and position it above the edge
-            QLabel *transportationLabel = new QLabel(QString::fromStdString(path[i][j].transportation));
+
+
+           // else if()
+            QLabel *transportationLabel = new QLabel(QString::fromStdString(Way[i][j].transportation));
             transportationLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
-            transportationLabel->setGeometry(midX, midY-5, 50, 20); // Adjust size as needed
+
+            if(Way[i][j].transportation=="Bus")
+            {
+                  QPixmap pixmap("C:/Users/mario/ya rb/bus2.png");
+                transportationLabel->setPixmap(pixmap);
+            }
+            else if(Way[i][j].transportation=="Metro")
+            {
+                QPixmap pixmap("C:/Users/mario/ya rb/metro2.png");
+                transportationLabel->setPixmap(pixmap);
+            }
+            else if(Way[i][j].transportation=="Train")
+            {    QPixmap pixmap("C:/Users/mario/ya rb/tain2.png");
+                transportationLabel->setPixmap(pixmap);
+
+            }
+                else if(Way[i][j].transportation=="Microbus")
+            {
+                QPixmap pixmap("C:/Users/mario/ya rb/microbus2.png");
+                transportationLabel->setPixmap(pixmap);
+            }
+                //   QPixmap pixmap("C:/Users/mario/ya rb/tain2.png");
+          //  transportationLabel->setPixmap(pixmap);
+           // transportationLabel->setMask(pixmap.mask());
+            transportationLabel->setGeometry(midX-10, midY-35, 50, 65); // Adjust size as needed
             transportationLabel->setStyleSheet("background-color: rgba(0,0,0,0%)");
 
             scene->addWidget(transportationLabel); // Add the label to the scene
 
 
-            QLabel *moneyLabel = new QLabel(QString::fromStdString(to_string(path[i][j].money)));
+            QLabel *moneyLabel = new QLabel(QString::fromStdString(to_string(Way[i][j].money)));
             moneyLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
             moneyLabel->setStyleSheet("background-color: rgba(0,0,0,0%)");
             moneyLabel->setGeometry(midX, midY+20, 50, 20); // Adjust size as needed

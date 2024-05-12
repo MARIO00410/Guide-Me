@@ -5,7 +5,6 @@
 #include <string>
 
 ReadGraph::ReadGraph() {}
-
 map<string, vector<Path>> ReadGraph::graph;
 map<string, int> ReadGraph::cityId;
 vector<int> ReadGraph::adjList[500];
@@ -52,16 +51,16 @@ void addEdge(const std::string& line) {
 
         ReadGraph::adjList[sourceId].push_back(destId);
         ReadGraph::adjList[destId].push_back(sourceId);
+
     }
 }
-
 
 void ReadGraph::GetGraph() {
     if (is_read) {
         qInfo() << "graph already read";
         return;
     }
-    const QString fileName = "C:\\Users\\youss\\OneDrive\\Desktop\\TransportationMap.txt";
+    const QString fileName = "C:/graph.txt";
     QFile file(fileName);
 
     if (!file.exists()) {
@@ -85,5 +84,6 @@ void ReadGraph::GetGraph() {
     }
 
     file.close();
+   // qDebug()<<Cities.size();
     is_read = true;
 }

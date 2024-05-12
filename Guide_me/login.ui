@@ -24,7 +24,6 @@
    </property>
    <property name="font">
     <font>
-     <family>Times New Roman</family>
      <bold>true</bold>
     </font>
    </property>
@@ -42,9 +41,9 @@
        <widget class="QLabel" name="label_username">
         <property name="font">
          <font>
-          <family>Eras Bold ITC</family>
+          <family>Segoe UI Black</family>
           <pointsize>12</pointsize>
-          <bold>false</bold>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
@@ -99,8 +98,8 @@ color: rgba(18,37,51,255);
        <widget class="QPushButton" name="signup_button">
         <property name="font">
          <font>
-          <family>Times New Roman</family>
-          <pointsize>12</pointsize>
+          <family>Segoe UI</family>
+          <pointsize>11</pointsize>
           <bold>true</bold>
           <underline>true</underline>
          </font>
@@ -120,7 +119,7 @@ border: 0px;
        <widget class="QPushButton" name="login_button">
         <property name="font">
          <font>
-          <family>Times New Roman</family>
+          <family>Segoe UI</family>
           <pointsize>14</pointsize>
           <bold>true</bold>
          </font>

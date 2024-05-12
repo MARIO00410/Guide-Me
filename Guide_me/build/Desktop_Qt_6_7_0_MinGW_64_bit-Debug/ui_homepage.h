@@ -33,6 +33,7 @@ public:
     QComboBox *comboBox_To;
     QPushButton *dfs;
     QPushButton *BFS;
+    QPushButton *completeGraph;
 
     void setupUi(QDialog *HomePage)
     {
@@ -97,6 +98,9 @@ public:
 "color:rgba(18,37,51,255);\n"
 "border-radius: 8px;\n"
 ""));
+        completeGraph = new QPushButton(HomePage);
+        completeGraph->setObjectName("completeGraph");
+        completeGraph->setGeometry(QRect(400, 40, 80, 24));
 
         retranslateUi(HomePage);
 
@@ -113,6 +117,7 @@ public:
         label_4->setText(QCoreApplication::translate("HomePage", "From", nullptr));
         dfs->setText(QCoreApplication::translate("HomePage", "DFS", nullptr));
         BFS->setText(QCoreApplication::translate("HomePage", "BFS", nullptr));
+        completeGraph->setText(QCoreApplication::translate("HomePage", "PushButton", nullptr));
     } // retranslateUi
 
 };

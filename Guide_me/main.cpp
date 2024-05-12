@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     ReadGraph::GetGraph();
     Data::ReadFile();
     QApplication a(argc, argv);
-    Login w;
+    HomePage w;
     w.show();
     return a.exec();
 }

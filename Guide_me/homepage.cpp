@@ -69,3 +69,36 @@ void HomePage::on_BFS_clicked()
     }
 }
 
+
+void HomePage::on_completeGraph_clicked()
+{
+    bool complete=true;qDebug()<<ReadGraph::Cities.size();
+    for(int i=0;i<ReadGraph::Cities.size();i++)
+    {
+        vector<string>destinationsOfSource;
+        int totalnumberofdestination=0;
+        for(int j=0;j<ReadGraph::graph[ReadGraph::Cities[i]].size();j++)
+        {
+            bool verfiy=true;
+            for(int k=0;k<destinationsOfSource.size();k++)
+            {
+                if(destinationsOfSource[k]==ReadGraph::graph[ReadGraph::Cities[i]][j].destination||destinationsOfSource[k]==ReadGraph::Cities[i])
+                    verfiy=false;
+
+            }
+            if(verfiy==true)
+            {
+                destinationsOfSource.push_back(ReadGraph::graph[ReadGraph::Cities[i]][j].destination);
+                totalnumberofdestination++;
+            }
+        }
+         //qDebug()<<totalnumberofdestination;
+
+    }
+
+    if(complete)
+        qDebug()<<"Complete graph";
+    else
+         qDebug()<<"Not Complete graph";
+}
+

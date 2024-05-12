@@ -25,7 +25,7 @@ BFS::BFS(QWidget *parent)
 {
     ui->setupUi(this);
     //ui->textEdit->setReadOnly(true);
-    QPixmap bkgnd("C:\\Users\\youss\\OneDrive\\Desktop\\WhatsApp_Image_2024-04-13_at_19.31.07_8e45379f.jpg");
+    QPixmap bkgnd("C:/Users/mario/ya rb/WhatsApp_Image_2024-04-13_at_19.31.07_8e45379f.jpg");
     bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
@@ -43,26 +43,26 @@ BFS::BFS(QWidget *parent)
 
 
 //control output format
-struct PrintSegment {
+/*struct Path {
     int cityId;//get city name
     string method;//transaction transportation
     int price;//calculate total spend in the journey
-};
+};*/
 
-//sorting condition based on PrintSegment structure
+//sorting condition based on Path structure
 struct ComparePaths {
-    bool operator()(const vector<PrintSegment>& path1, const vector<PrintSegment>& path2) const {
+    bool operator()(const vector<Path>& path1, const vector<Path>& path2) const {
         int totalSpend1 = 0, totalSpend2 = 0;
-        for (const auto& segment : path1) totalSpend1 += segment.price;
-        for (const auto& segment : path2) totalSpend2 += segment.price;
-        return totalSpend1 > totalSpend2;
+        for (const auto& segment : path1) totalSpend1 += segment.money;
+        for (const auto& segment : path2) totalSpend2 += segment.money;
+        return totalSpend1 < totalSpend2;
     }
 };
 
 //global variables
 set<string> printedPaths;
 
-string getCityById(int id) {
+string getCityById(int id) {//this func get id and return name of city
     ReadGraph readGraph;
     for (const auto& entry : readGraph.cityId) {
         if (entry.second == id) {
@@ -73,44 +73,47 @@ string getCityById(int id) {
 }
 
 //to get a unique path to use in the set
-string generatePathKey(vector<PrintSegment>& path) {
+/*string generatePathKey(vector<Path>& path) {//to make sure this path is unique so we put it in set
     string key = "";
     for (auto& segment : path) {
-        key += to_string(segment.cityId) + "-" + segment.method + "-" + to_string(segment.price) + "->";
+        key += to_string(segment.id) + "-" + segment.transportation + "-" + to_string(segment.money) + "->";
     }
     return key;
-}
+}*/
+set<vector<Path>,ComparePaths> sortedPaths ;
 
-void printPath(vector<PrintSegment>& path, QGraphicsScene* scene, string source) {
-    string key = generatePathKey(path);
 
-    if (printedPaths.find(key) != printedPaths.end()) {
-        return;
-    }
-    printedPaths.insert(key);
+void printPath(QGraphicsScene* scene, string source) {
+  //  string key = generatePathKey(path);
 
-    int totalSpend = 0;
+    //if (/*return index*/printedPaths.find(key) != printedPaths.end()) {
+      //  return;
+    //}
+    //printedPaths.insert(key);
 
-    for (int i = 0; i < path.size(); i++) {
-        Route += getCityById(path[i].cityId);
-        if (i != path.size() - 1) {
-            Route += " (" + path[i + 1].method + ") ";
+  for(auto it=sortedPaths.begin();it!=sortedPaths.end();it++){
+     int totalSpend = 0;
+      for (int i = 0; i < it->size(); i++){
+
+          Route += getCityById(it->at(i).id);
+        if (i != it->size() - 1) {
+              Route += " (" + it->at(i + 1).transportation + ") ";
             Route += " -> ";
         }
-        totalSpend += path[i].price;
+        totalSpend += it->at(i).money;
     }
     Route += "\n Total Spend: " + to_string(totalSpend) + '\n';
 
     int xOffset = 150;
     NodeItem *sourceNode = new NodeItem(QString::fromStdString(source));
     scene->addItem(sourceNode);
-    int numNodes = path.size();
+    int numNodes = it->size();
     int yOffset = 150 * off++;
     sourceNode->setPos(xOffset, yOffset);
     NodeItem *prev = sourceNode;
 
     for (int j = 0; j < numNodes - 1 ; j++) {
-        NodeItem *node = new NodeItem(QString::fromStdString(getCityById(path[j + 1].cityId)));
+        NodeItem *node = new NodeItem(QString::fromStdString(getCityById(it->at(j + 1).id)));
         qreal x = xOffset + (j + 1) * 150;
         qreal y = yOffset ;
         node->setPos(x, y);
@@ -125,19 +128,41 @@ void printPath(vector<PrintSegment>& path, QGraphicsScene* scene, string source)
         qreal midY = (prev->pos().y() + node->pos().y()) / 2.0; // Adjust y to position the label above the edge
 
         // Create a label for the transportation method and position it above the edge
-        QLabel *transportationLabel = new QLabel(QString::fromStdString(path[j+1].method));
+        QLabel *transportationLabel = new QLabel(QString::fromStdString(it->at(j+1).transportation));
         transportationLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
+        qDebug()<<it->at(j).transportation;
+        if(it->at(j+1).transportation=="Bus")
+        {
+            QPixmap pixmap("C:/Users/mario/ya rb/bus2.png");
+            transportationLabel->setPixmap(pixmap);
+        }
+        else if(it->at(j+1).transportation=="Metro")
+        {
+            QPixmap pixmap("C:/Users/mario/ya rb/metro2.png");
+            transportationLabel->setPixmap(pixmap);
+        }
+        else if(it->at(j+1).transportation=="Train")
+        {
+            QPixmap pixmap("C:/Users/mario/ya rb/tain2.png");
+            transportationLabel->setPixmap(pixmap);
+        }
+        else if(it->at(j+1).transportation=="Microbus")
+        {
+            QPixmap pixmap("C:/Users/mario/ya rb/microbus2.png");
+            transportationLabel->setPixmap(pixmap);
+        }
 
-        transportationLabel->setGeometry(midX, midY-5, 50, 20); // Adjust size as needed
+        transportationLabel->setGeometry(midX-10, midY-35, 50, 65); // Adjust size as needed
         transportationLabel->setStyleSheet("background-color: rgba(0,0,0,0%)");
-        scene->addWidget(transportationLabel); // Add the label to the scene
+
+        scene->addWidget(transportationLabel);
+        // Add the label to the scene
 
 
-        QLabel *moneyLabel = new QLabel(QString::fromStdString(to_string(path[j+1].price)));
+        QLabel *moneyLabel = new QLabel(QString::fromStdString(to_string(it->at(j+1).money)));
         moneyLabel->setParent(nullptr); // No parent, unless there is an appropriate QWidget to set as parent
         moneyLabel->setStyleSheet("background-color: rgba(0,0,0,0%)");
         moneyLabel->setGeometry(midX, midY+20, 50, 20); // Adjust size as needed
-
         scene->addWidget(moneyLabel);
 
 
@@ -157,14 +182,13 @@ void printPath(vector<PrintSegment>& path, QGraphicsScene* scene, string source)
     scene->addWidget(totalLabel);
 
 }
+}
 
 
 
-
-
-bool isNotVisited(int nodeId, vector<PrintSegment>& path) {
+bool isNotVisited(int nodeId, vector<Path>& path) {
     for (const auto& segment : path) {
-        if (segment.cityId == nodeId) {
+        if (segment.id == nodeId) {
             return false;
         }
     }
@@ -172,32 +196,37 @@ bool isNotVisited(int nodeId, vector<PrintSegment>& path) {
 }
 
 void findPaths(int sourceId, int destId, int budget, QGraphicsScene* scene, string source) {
-    priority_queue<vector<PrintSegment>, vector<vector<PrintSegment>>, ComparePaths> pq;
-    vector<PrintSegment> initialPath = {{sourceId, "", 0} };
-    pq.push(initialPath);
+    queue<vector<Path>> q;
+    vector<Path> path;
+    path.push_back(Path(getCityById(sourceId),0,"",sourceId));
+    q.push(path);
 
-    while (!pq.empty()) {
-        vector<PrintSegment> path = pq.top();
-        pq.pop();
+    while (!q.empty()) {
+        path = q.front();
+        q.pop();
 
-        int lastNodeId = path.back().cityId;
+        int lastNodeId = path[path.size() - 1].id;
         int totalSpend = 0;
 
         for (auto& segment : path) {
-            totalSpend += segment.price;
+            totalSpend += segment.money;
         }
 
-        if (lastNodeId == destId && totalSpend <= budget) {
-            printPath(path, scene, source);
-        }
-        ReadGraph readGraph;
-        for (int nextNodeId : readGraph.adjList[lastNodeId]) {
-            if (isNotVisited(nextNodeId, path)) {
-                for (const auto& edge : readGraph.graph[getCityById(lastNodeId)]) {
-                    if (readGraph.cityId[edge.destination] == nextNodeId) {
-                        vector<PrintSegment> newPath = path;
-                        newPath.push_back(PrintSegment{nextNodeId, edge.transportation, edge.money });
-                        pq.push(newPath);
+        if (totalSpend <= budget) {
+            if (lastNodeId == destId) {
+               // printPath(path, scene, source);
+                sortedPaths.insert(path);
+            }
+
+            ReadGraph readGraph;
+            for (int nextNodeId : readGraph.adjList[lastNodeId]) {
+                if (isNotVisited(nextNodeId, path)) {
+                    for (const auto& edge : readGraph.graph[getCityById(lastNodeId)]) {
+                        if (readGraph.cityId[edge.destination] == nextNodeId) {
+                            vector<Path> newPath = path;
+                            newPath.push_back(Path(getCityById(nextNodeId), edge.money, edge.transportation, nextNodeId));
+                            q.push(newPath);
+                        }
                     }
                 }
             }
@@ -220,6 +249,7 @@ void BFS::on_showRoute_clicked()
     string destination = readGraph.GoTo;
     int budget = readGraph.Budget;
     findPaths(readGraph.cityId[source], readGraph.cityId[destination], budget, scene, source);
+    printPath(scene,source);
     qDebug() << Route;
     Route = "";
     //ui->textEdit->setText(Route);

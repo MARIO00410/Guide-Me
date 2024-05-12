@@ -47,7 +47,6 @@ public:
         login_groupBox->setObjectName("login_groupBox");
         login_groupBox->setGeometry(QRect(160, 320, 409, 187));
         QFont font;
-        font.setFamilies({QString::fromUtf8("Times New Roman")});
         font.setBold(true);
         login_groupBox->setFont(font);
         login_groupBox->setStyleSheet(QString::fromUtf8("background-color:rgba(18,37,51,255);\n"
@@ -59,9 +58,9 @@ public:
         label_username = new QLabel(login_groupBox);
         label_username->setObjectName("label_username");
         QFont font1;
-        font1.setFamilies({QString::fromUtf8("Eras Bold ITC")});
+        font1.setFamilies({QString::fromUtf8("Segoe UI Black")});
         font1.setPointSize(12);
-        font1.setBold(false);
+        font1.setBold(true);
         label_username->setFont(font1);
 
         horizontalLayout_2->addWidget(label_username);
@@ -81,11 +80,7 @@ public:
         horizontalLayout->setObjectName("horizontalLayout");
         label_password = new QLabel(login_groupBox);
         label_password->setObjectName("label_password");
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("Segoe UI Black")});
-        font2.setPointSize(12);
-        font2.setBold(true);
-        label_password->setFont(font2);
+        label_password->setFont(font1);
 
         horizontalLayout->addWidget(label_password);
 
@@ -105,12 +100,12 @@ public:
         horizontalLayout_4->setObjectName("horizontalLayout_4");
         signup_button = new QPushButton(login_groupBox);
         signup_button->setObjectName("signup_button");
-        QFont font3;
-        font3.setFamilies({QString::fromUtf8("Times New Roman")});
-        font3.setPointSize(12);
-        font3.setBold(true);
-        font3.setUnderline(true);
-        signup_button->setFont(font3);
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Segoe UI")});
+        font2.setPointSize(11);
+        font2.setBold(true);
+        font2.setUnderline(true);
+        signup_button->setFont(font2);
         signup_button->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
 "color: rgba(217,236,243,255);\n"
 "border: 0px;\n"
@@ -120,11 +115,11 @@ public:
 
         login_button = new QPushButton(login_groupBox);
         login_button->setObjectName("login_button");
-        QFont font4;
-        font4.setFamilies({QString::fromUtf8("Times New Roman")});
-        font4.setPointSize(14);
-        font4.setBold(true);
-        login_button->setFont(font4);
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("Segoe UI")});
+        font3.setPointSize(14);
+        font3.setBold(true);
+        login_button->setFont(font3);
         login_button->setStyleSheet(QString::fromUtf8("background: rgba(217,236,243,255);\n"
 "color: rgba(18,37,51,255);\n"
 "border-radius: 8px;\n"
@@ -141,13 +136,13 @@ public:
         label = new QLabel(Login);
         label->setObjectName("label");
         label->setGeometry(QRect(160, 140, 421, 141));
-        QFont font5;
-        font5.setFamilies({QString::fromUtf8("Ubuntu Arabic")});
-        font5.setPointSize(70);
-        font5.setBold(true);
-        font5.setUnderline(false);
-        font5.setStrikeOut(false);
-        label->setFont(font5);
+        QFont font4;
+        font4.setFamilies({QString::fromUtf8("Ubuntu Arabic")});
+        font4.setPointSize(70);
+        font4.setBold(true);
+        font4.setUnderline(false);
+        font4.setStrikeOut(false);
+        label->setFont(font4);
         label->setStyleSheet(QString::fromUtf8("color: rgba(255, 255, 255);\n"
 "text-align: center;\n"
 "    text-decoration: none;"));
