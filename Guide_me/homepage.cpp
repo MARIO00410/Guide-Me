@@ -92,7 +92,6 @@ void HomePage::on_completeGraph_clicked()
                 totalnumberofdestination++;
             }
         }
-         //qDebug()<<totalnumberofdestination;
 
     }
 
