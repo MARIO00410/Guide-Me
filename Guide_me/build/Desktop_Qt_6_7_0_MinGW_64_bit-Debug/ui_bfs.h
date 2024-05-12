@@ -12,9 +12,9 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -24,34 +24,45 @@ class Ui_BFS
 public:
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
-    QTextEdit *textEdit;
-    QPushButton *showRoute;
+    QGraphicsView *graphicsView;
+    QWidget *layoutWidget1;
+    QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButtonBack;
+    QPushButton *showRoute;
 
     void setupUi(QDialog *BFS)
     {
         if (BFS->objectName().isEmpty())
             BFS->setObjectName("BFS");
-        BFS->resize(837, 527);
+        BFS->resize(750, 650);
         layoutWidget = new QWidget(BFS);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(10, 20, 821, 461));
+        layoutWidget->setGeometry(QRect(0, 0, 781, 601));
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        textEdit = new QTextEdit(layoutWidget);
-        textEdit->setObjectName("textEdit");
+        graphicsView = new QGraphicsView(layoutWidget);
+        graphicsView->setObjectName("graphicsView");
+        graphicsView->setStyleSheet(QString::fromUtf8("background:rgba(0,0,0,0.5);"));
 
-        horizontalLayout->addWidget(textEdit);
+        horizontalLayout->addWidget(graphicsView);
 
-        showRoute = new QPushButton(layoutWidget);
+        layoutWidget1 = new QWidget(BFS);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(0, 610, 169, 26));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget1);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        pushButtonBack = new QPushButton(layoutWidget1);
+        pushButtonBack->setObjectName("pushButtonBack");
+
+        horizontalLayout_2->addWidget(pushButtonBack);
+
+        showRoute = new QPushButton(layoutWidget1);
         showRoute->setObjectName("showRoute");
 
-        horizontalLayout->addWidget(showRoute);
+        horizontalLayout_2->addWidget(showRoute);
 
-        pushButtonBack = new QPushButton(BFS);
-        pushButtonBack->setObjectName("pushButtonBack");
-        pushButtonBack->setGeometry(QRect(110, 490, 80, 24));
 
         retranslateUi(BFS);
 
@@ -61,8 +72,8 @@ public:
     void retranslateUi(QDialog *BFS)
     {
         BFS->setWindowTitle(QCoreApplication::translate("BFS", "Dialog", nullptr));
-        showRoute->setText(QCoreApplication::translate("BFS", "Show Route", nullptr));
         pushButtonBack->setText(QCoreApplication::translate("BFS", "Back", nullptr));
+        showRoute->setText(QCoreApplication::translate("BFS", "Show Route", nullptr));
     } // retranslateUi
 
 };

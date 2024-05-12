@@ -13,11 +13,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,21 +26,17 @@ class Ui_HomePage
 {
 public:
     QPushButton *pushButton;
-    QWidget *layoutWidget;
-    QVBoxLayout *verticalLayout_2;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *label;
-    QLabel *label_2;
-    QLabel *label_3;
-    QVBoxLayout *verticalLayout;
-    QHBoxLayout *horizontalLayout_2;
+    QGroupBox *groupBox;
     QComboBox *comboBoxFrom;
-    QComboBox *comboBox_To;
+    QLabel *label_6;
+    QLabel *label_5;
     QLineEdit *lineEditBudget;
-    QHBoxLayout *horizontalLayout;
+    QLabel *label_4;
+    QComboBox *comboBox_To;
     QPushButton *dfs;
     QPushButton *BFS;
-    QWidget *layoutWidget1;
+    QPushButton *completeGraph;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
@@ -50,93 +46,85 @@ public:
     {
         if (HomePage->objectName().isEmpty())
             HomePage->setObjectName("HomePage");
-        HomePage->resize(476, 355);
+        HomePage->resize(750, 650);
         pushButton = new QPushButton(HomePage);
         pushButton->setObjectName("pushButton");
         pushButton->setGeometry(QRect(30, 20, 80, 24));
+        groupBox = new QGroupBox(HomePage);
+        groupBox->setObjectName("groupBox");
+        groupBox->setGeometry(QRect(140, 210, 461, 231));
+        groupBox->setStyleSheet(QString::fromUtf8("background-color:rgba(18,37,51,0.8);\n"
+""));
+        comboBoxFrom = new QComboBox(groupBox);
+        comboBoxFrom->setObjectName("comboBoxFrom");
+        comboBoxFrom->setGeometry(QRect(100, 50, 131, 31));
+        comboBoxFrom->setStyleSheet(QString::fromUtf8("background-color:rgba(217,236,243,255);\n"
+"color:rgba(18,37,51,255);"));
+        label_6 = new QLabel(groupBox);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(50, 90, 71, 31));
+        QFont font;
+        font.setPointSize(15);
+        label_6->setFont(font);
+        label_6->setStyleSheet(QString::fromUtf8("background-color: transparent;"));
+        label_5 = new QLabel(groupBox);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(240, 50, 119, 28));
+        label_5->setFont(font);
+        label_5->setStyleSheet(QString::fromUtf8("background-color: transparent;"));
+        lineEditBudget = new QLineEdit(groupBox);
+        lineEditBudget->setObjectName("lineEditBudget");
+        lineEditBudget->setGeometry(QRect(120, 100, 281, 21));
+        lineEditBudget->setStyleSheet(QString::fromUtf8("background-color:rgba(217,236,243,255);\n"
+"color:rgba(18,37,51,255);"));
+        label_4 = new QLabel(groupBox);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(50, 50, 51, 28));
+        label_4->setFont(font);
+        label_4->setStyleSheet(QString::fromUtf8("background-color: transparent;"));
+        comboBox_To = new QComboBox(groupBox);
+        comboBox_To->setObjectName("comboBox_To");
+        comboBox_To->setGeometry(QRect(270, 50, 131, 31));
+        comboBox_To->setStyleSheet(QString::fromUtf8("background-color:rgba(217,236,243,255);\n"
+"color:rgba(18,37,51,255);"));
+        dfs = new QPushButton(groupBox);
+        dfs->setObjectName("dfs");
+        dfs->setGeometry(QRect(50, 130, 171, 31));
+        QFont font1;
+        font1.setBold(true);
+        dfs->setFont(font1);
+        dfs->setStyleSheet(QString::fromUtf8("background-color:rgba(217,236,243,255);\n"
+"color:rgba(18,37,51,255);\n"
+"border-radius: 8px;\n"
+""));
+        BFS = new QPushButton(groupBox);
+        BFS->setObjectName("BFS");
+        BFS->setGeometry(QRect(230, 130, 171, 31));
+        BFS->setFont(font1);
+        BFS->setStyleSheet(QString::fromUtf8("background-color:rgba(217,236,243,255);\n"
+"color:rgba(18,37,51,255);\n"
+"border-radius: 8px;\n"
+""));
+        completeGraph = new QPushButton(HomePage);
+        completeGraph->setObjectName("completeGraph");
+        completeGraph->setGeometry(QRect(400, 40, 80, 24));
         layoutWidget = new QWidget(HomePage);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(80, 120, 311, 101));
-        verticalLayout_2 = new QVBoxLayout(layoutWidget);
-        verticalLayout_2->setObjectName("verticalLayout_2");
-        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName("horizontalLayout_3");
-        label = new QLabel(layoutWidget);
-        label->setObjectName("label");
-
-        horizontalLayout_3->addWidget(label);
-
-        label_2 = new QLabel(layoutWidget);
-        label_2->setObjectName("label_2");
-
-        horizontalLayout_3->addWidget(label_2);
-
-        label_3 = new QLabel(layoutWidget);
-        label_3->setObjectName("label_3");
-
-        horizontalLayout_3->addWidget(label_3);
-
-
-        verticalLayout_2->addLayout(horizontalLayout_3);
-
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName("verticalLayout");
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName("horizontalLayout_2");
-        comboBoxFrom = new QComboBox(layoutWidget);
-        comboBoxFrom->setObjectName("comboBoxFrom");
-
-        horizontalLayout_2->addWidget(comboBoxFrom);
-
-        comboBox_To = new QComboBox(layoutWidget);
-        comboBox_To->setObjectName("comboBox_To");
-
-        horizontalLayout_2->addWidget(comboBox_To);
-
-        lineEditBudget = new QLineEdit(layoutWidget);
-        lineEditBudget->setObjectName("lineEditBudget");
-
-        horizontalLayout_2->addWidget(lineEditBudget);
-
-
-        verticalLayout->addLayout(horizontalLayout_2);
-
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName("horizontalLayout");
-        dfs = new QPushButton(layoutWidget);
-        dfs->setObjectName("dfs");
-
-        horizontalLayout->addWidget(dfs);
-
-        BFS = new QPushButton(layoutWidget);
-        BFS->setObjectName("BFS");
-
-        horizontalLayout->addWidget(BFS);
-
-
-        verticalLayout->addLayout(horizontalLayout);
-
-
-        verticalLayout_2->addLayout(verticalLayout);
-
-        layoutWidget1 = new QWidget(HomePage);
-        layoutWidget1->setObjectName("layoutWidget1");
-        layoutWidget1->setGeometry(QRect(80, 220, 295, 31));
-        horizontalLayout_4 = new QHBoxLayout(layoutWidget1);
+        layoutWidget->setGeometry(QRect(80, 220, 295, 31));
+        horizontalLayout_4 = new QHBoxLayout(layoutWidget);
         horizontalLayout_4->setObjectName("horizontalLayout_4");
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
-        pushButton_2 = new QPushButton(layoutWidget1);
+        pushButton_2 = new QPushButton(layoutWidget);
         pushButton_2->setObjectName("pushButton_2");
 
         horizontalLayout_4->addWidget(pushButton_2);
 
-        pushButton_3 = new QPushButton(layoutWidget1);
+        pushButton_3 = new QPushButton(layoutWidget);
         pushButton_3->setObjectName("pushButton_3");
 
         horizontalLayout_4->addWidget(pushButton_3);
 
-        pushButton_update = new QPushButton(layoutWidget1);
+        pushButton_update = new QPushButton(layoutWidget);
         pushButton_update->setObjectName("pushButton_update");
 
         horizontalLayout_4->addWidget(pushButton_update);
@@ -151,11 +139,13 @@ public:
     {
         HomePage->setWindowTitle(QCoreApplication::translate("HomePage", "Dialog", nullptr));
         pushButton->setText(QCoreApplication::translate("HomePage", "Profile", nullptr));
-        label->setText(QCoreApplication::translate("HomePage", "From", nullptr));
-        label_2->setText(QCoreApplication::translate("HomePage", "To", nullptr));
-        label_3->setText(QCoreApplication::translate("HomePage", "Budget", nullptr));
+        groupBox->setTitle(QString());
+        label_6->setText(QCoreApplication::translate("HomePage", "Budget", nullptr));
+        label_5->setText(QCoreApplication::translate("HomePage", "To", nullptr));
+        label_4->setText(QCoreApplication::translate("HomePage", "From", nullptr));
         dfs->setText(QCoreApplication::translate("HomePage", "DFS", nullptr));
         BFS->setText(QCoreApplication::translate("HomePage", "BFS", nullptr));
+        completeGraph->setText(QCoreApplication::translate("HomePage", "PushButton", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HomePage", " add", nullptr));
         pushButton_3->setText(QCoreApplication::translate("HomePage", "del", nullptr));
         pushButton_update->setText(QCoreApplication::translate("HomePage", "update", nullptr));

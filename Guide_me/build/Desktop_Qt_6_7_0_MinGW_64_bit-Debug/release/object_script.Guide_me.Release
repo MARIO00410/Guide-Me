@@ -3,11 +3,13 @@ release/bfs.o
 release/data.o
 release/delete.o
 release/functions.o
+release/edgeitem.o
 release/homepage.o
 release/info.o
 release/login.o
 release/main.o
 release/mainwindow.o
+release/nodeitem.o
 release/profle.o
 release/dfs.o
 release/path.o

@@ -2,7 +2,7 @@
 #define BFS_H
 
 #include <QDialog>
-
+#include <QGraphicsView>
 namespace Ui {
 class BFS;
 }
@@ -17,11 +17,11 @@ public:
 
 private slots:
     void on_showRoute_clicked();
-
     void on_pushButtonBack_clicked();
 
 private:
     Ui::BFS *ui;
+    QGraphicsView *view;
 };
 
 #endif // BFS_H

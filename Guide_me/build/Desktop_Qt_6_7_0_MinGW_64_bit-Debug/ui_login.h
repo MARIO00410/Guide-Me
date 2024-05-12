@@ -18,15 +18,12 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_Login
 {
 public:
-    QWidget *widget;
-    QVBoxLayout *verticalLayout_2;
     QGroupBox *login_groupBox;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
@@ -35,28 +32,25 @@ public:
     QHBoxLayout *horizontalLayout;
     QLabel *label_password;
     QLineEdit *login_password_field;
-    QPushButton *login_button;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *ask_label;
+    QHBoxLayout *horizontalLayout_4;
     QPushButton *signup_button;
+    QPushButton *login_button;
+    QLabel *background;
+    QLabel *label;
 
     void setupUi(QDialog *Login)
     {
         if (Login->objectName().isEmpty())
             Login->setObjectName("Login");
-        Login->resize(529, 454);
-        widget = new QWidget(Login);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(30, 120, 461, 171));
-        verticalLayout_2 = new QVBoxLayout(widget);
-        verticalLayout_2->setObjectName("verticalLayout_2");
-        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        login_groupBox = new QGroupBox(widget);
+        Login->resize(750, 650);
+        login_groupBox = new QGroupBox(Login);
         login_groupBox->setObjectName("login_groupBox");
+        login_groupBox->setGeometry(QRect(160, 320, 409, 187));
         QFont font;
-        font.setFamilies({QString::fromUtf8("Times New Roman")});
         font.setBold(true);
         login_groupBox->setFont(font);
+        login_groupBox->setStyleSheet(QString::fromUtf8("background-color:rgba(18,37,51,255);\n"
+""));
         verticalLayout = new QVBoxLayout(login_groupBox);
         verticalLayout->setObjectName("verticalLayout");
         horizontalLayout_2 = new QHBoxLayout();
@@ -64,7 +58,7 @@ public:
         label_username = new QLabel(login_groupBox);
         label_username->setObjectName("label_username");
         QFont font1;
-        font1.setFamilies({QString::fromUtf8("Times New Roman")});
+        font1.setFamilies({QString::fromUtf8("Segoe UI Black")});
         font1.setPointSize(12);
         font1.setBold(true);
         label_username->setFont(font1);
@@ -73,6 +67,9 @@ public:
 
         login_user_name_field = new QLineEdit(login_groupBox);
         login_user_name_field->setObjectName("login_user_name_field");
+        login_user_name_field->setStyleSheet(QString::fromUtf8("background: rgba(217,236,243,255);\n"
+"color: rgba(18,37,51,255);\n"
+""));
 
         horizontalLayout_2->addWidget(login_user_name_field);
 
@@ -89,6 +86,9 @@ public:
 
         login_password_field = new QLineEdit(login_groupBox);
         login_password_field->setObjectName("login_password_field");
+        login_password_field->setStyleSheet(QString::fromUtf8("background: rgba(217,236,243,255);\n"
+"color: rgba(18,37,51,255);\n"
+""));
         login_password_field->setEchoMode(QLineEdit::Password);
 
         horizontalLayout->addWidget(login_password_field);
@@ -96,36 +96,59 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
+        signup_button = new QPushButton(login_groupBox);
+        signup_button->setObjectName("signup_button");
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Segoe UI")});
+        font2.setPointSize(11);
+        font2.setBold(true);
+        font2.setUnderline(true);
+        signup_button->setFont(font2);
+        signup_button->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
+"color: rgba(217,236,243,255);\n"
+"border: 0px;\n"
+""));
+
+        horizontalLayout_4->addWidget(signup_button);
+
         login_button = new QPushButton(login_groupBox);
         login_button->setObjectName("login_button");
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("Times New Roman")});
-        font2.setPointSize(14);
-        font2.setBold(true);
-        login_button->setFont(font2);
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("Segoe UI")});
+        font3.setPointSize(14);
+        font3.setBold(true);
+        login_button->setFont(font3);
+        login_button->setStyleSheet(QString::fromUtf8("background: rgba(217,236,243,255);\n"
+"color: rgba(18,37,51,255);\n"
+"border-radius: 8px;\n"
+""));
 
-        verticalLayout->addWidget(login_button);
-
-
-        verticalLayout_2->addWidget(login_groupBox);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName("horizontalLayout_3");
-        ask_label = new QLabel(widget);
-        ask_label->setObjectName("ask_label");
-        ask_label->setFont(font);
-
-        horizontalLayout_3->addWidget(ask_label);
-
-        signup_button = new QPushButton(widget);
-        signup_button->setObjectName("signup_button");
-        signup_button->setFont(font1);
-
-        horizontalLayout_3->addWidget(signup_button);
+        horizontalLayout_4->addWidget(login_button);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_3);
+        verticalLayout->addLayout(horizontalLayout_4);
 
+        background = new QLabel(Login);
+        background->setObjectName("background");
+        background->setGeometry(QRect(0, 0, 751, 651));
+        label = new QLabel(Login);
+        label->setObjectName("label");
+        label->setGeometry(QRect(160, 140, 421, 141));
+        QFont font4;
+        font4.setFamilies({QString::fromUtf8("Ubuntu Arabic")});
+        font4.setPointSize(70);
+        font4.setBold(true);
+        font4.setUnderline(false);
+        font4.setStrikeOut(false);
+        label->setFont(font4);
+        label->setStyleSheet(QString::fromUtf8("color: rgba(255, 255, 255);\n"
+"text-align: center;\n"
+"    text-decoration: none;"));
+        background->raise();
+        login_groupBox->raise();
+        label->raise();
 
         retranslateUi(Login);
 
@@ -136,11 +159,12 @@ public:
     {
         Login->setWindowTitle(QCoreApplication::translate("Login", "Dialog", nullptr));
         login_groupBox->setTitle(QCoreApplication::translate("Login", "Log In", nullptr));
-        label_username->setText(QCoreApplication::translate("Login", "UserName:", nullptr));
-        label_password->setText(QCoreApplication::translate("Login", "Password :  ", nullptr));
+        label_username->setText(QCoreApplication::translate("Login", "Username:", nullptr));
+        label_password->setText(QCoreApplication::translate("Login", "Password: ", nullptr));
+        signup_button->setText(QCoreApplication::translate("Login", "Don't have an account?", nullptr));
         login_button->setText(QCoreApplication::translate("Login", "Log In", nullptr));
-        ask_label->setText(QCoreApplication::translate("Login", "Don't have an account?", nullptr));
-        signup_button->setText(QCoreApplication::translate("Login", "Sign Up", nullptr));
+        background->setText(QString());
+        label->setText(QCoreApplication::translate("Login", "Guide Me", nullptr));
     } // retranslateUi
 
 };

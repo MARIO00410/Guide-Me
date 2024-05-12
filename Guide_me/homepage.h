@@ -30,6 +30,7 @@ private slots:
 
 
     void on_pushButton_update_clicked();
+    void on_completeGraph_clicked();
 
 private:
     Profle r;

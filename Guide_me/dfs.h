@@ -2,7 +2,7 @@
 #define DFS_H
 
 #include <QDialog>
-
+#include <QGraphicsView>
 namespace Ui {
 class DFS;
 }
@@ -23,6 +23,7 @@ private slots:
 
 private:
     Ui::DFS *ui;
+    QGraphicsView *view;
 };
 
 #endif // DFS_H

@@ -3,11 +3,13 @@ debug/bfs.o
 debug/data.o
 debug/delete.o
 debug/functions.o
+debug/edgeitem.o
 debug/homepage.o
 debug/info.o
 debug/login.o
 debug/main.o
 debug/mainwindow.o
+debug/nodeitem.o
 debug/profle.o
 debug/dfs.o
 debug/path.o

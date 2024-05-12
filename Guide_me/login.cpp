@@ -8,11 +8,22 @@
 #include <data.h>
 #include <signup.h>
 #include <homepage.h>
+#include <QMovie>
+
 Login::Login(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Login)
 {
     ui->setupUi(this);
+
+
+
+    QMovie *movie = new QMovie("C:/Users/mario/ya rb/c0c02bafcfe60ea76d6d7eede8ec4564(1).gif");
+    ui->background->setMovie(movie);
+    movie->start();
+
+
+
 }
 bool Login::checkCredentials(const QString &username, const QString &password) {
     for(int i=0;i<Data::users.size();i++){

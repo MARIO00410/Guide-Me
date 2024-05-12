@@ -14,11 +14,13 @@ SOURCES += \
     data.cpp \
     delete.cpp \
     functions.cpp \
+    edgeitem.cpp \
     homepage.cpp \
     info.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
+    nodeitem.cpp \
     profle.cpp \
     dfs.cpp \
     path.cpp \
@@ -32,6 +34,8 @@ HEADERS += \
     bfs.h \
     delete.h \
     functions.h \
+    edgeitem.h \
+    nodeitem.h \
     readgraph.h \
     update_transportation.h \
     user.h \

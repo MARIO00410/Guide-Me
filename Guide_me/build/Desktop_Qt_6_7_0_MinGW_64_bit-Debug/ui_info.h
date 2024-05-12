@@ -61,13 +61,13 @@ public:
     {
         if (Info->objectName().isEmpty())
             Info->setObjectName("Info");
-        Info->resize(660, 402);
+        Info->resize(750, 650);
         groupBox = new QGroupBox(Info);
         groupBox->setObjectName("groupBox");
-        groupBox->setGeometry(QRect(40, 10, 451, 331));
+        groupBox->setGeometry(QRect(0, 10, 711, 571));
         layoutWidget = new QWidget(groupBox);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(10, 30, 431, 281));
+        layoutWidget->setGeometry(QRect(10, 30, 691, 531));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -208,7 +208,7 @@ public:
 
         on_pushButtonBack = new QPushButton(Info);
         on_pushButtonBack->setObjectName("on_pushButtonBack");
-        on_pushButtonBack->setGeometry(QRect(40, 350, 80, 24));
+        on_pushButtonBack->setGeometry(QRect(40, 590, 80, 24));
 
         retranslateUi(Info);
 
