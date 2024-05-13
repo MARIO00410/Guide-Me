@@ -19,15 +19,14 @@ void Delete:: del(string src,string dest,string transportation)
             if(ReadGraph::graph[src][i].transportation==transportation && ReadGraph::graph[src][i].destination==dest)
          {
             ReadGraph::graph[src].erase(ReadGraph::graph[src].begin()+i);
+
          }
-            if(ReadGraph::graph[dest][i].transportation==transportation && ReadGraph::graph[dest][i].destination==src)
-                   {
-                       ReadGraph::graph[dest].erase(ReadGraph::graph[dest].begin()+i);
-                   }
+         if(ReadGraph::graph[dest][i].transportation==transportation && ReadGraph::graph[dest][i].destination==src)
+         {
+             ReadGraph::graph[dest].erase(ReadGraph::graph[dest].begin()+i);
+         }
+
     }
-
-
-
     }
 
 Delete::~Delete()
@@ -48,8 +47,6 @@ void Delete::on_show_transportations_clicked()
      src=ui->lineEdit_source->text().toStdString();
     dst=ui->lineEdit_dest->text().toStdString();
 
-
-
     for(int i=0,j=0;i<ReadGraph::graph[src].size();i++)
     {
         if(ReadGraph::graph[src][i].destination == dst)
@@ -62,8 +59,6 @@ void Delete::on_show_transportations_clicked()
              checkbox[j]->show();
              j++;
             }
-
-
     }
 
 }
@@ -94,6 +89,5 @@ void Delete::on_Delete_back_clicked()
     home.setModal(true);
     hide();
     home.exec();
-
 }
 

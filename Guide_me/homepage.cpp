@@ -16,9 +16,11 @@ HomePage::HomePage(QWidget *parent)
     , ui(new Ui::HomePage)
 {
     ui->setupUi(this);
-    for(auto& item :ReadGraph::Cities){
-        ui->comboBoxFrom->addItem(QString::fromStdString(item));
-        ui->comboBox_To->addItem(QString::fromStdString(item));
+    for(auto& item :ReadGraph::graph){
+        if(item.second.size()==0)
+            continue;
+        ui->comboBoxFrom->addItem(QString::fromStdString(item.first));
+        ui->comboBox_To->addItem(QString::fromStdString(item.first));
     }
 
     QPixmap bkgnd("C:\\Users\\youss\\OneDrive\\Desktop\\Untitled-3.jpg");

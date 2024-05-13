@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
+#include <set>
 #include <string>
 
 ReadGraph::ReadGraph() {}
@@ -60,7 +61,7 @@ void ReadGraph::GetGraph() {
         qInfo() << "graph already read";
         return;
     }
-    const QString fileName = "C:/g/Guide-Me/Guide_me/graph.txt";
+    const QString fileName = "D:/Project/New folder/graph.txt";
     QFile file(fileName);
 
     if (!file.exists()) {
@@ -88,25 +89,36 @@ void ReadGraph::GetGraph() {
     is_read = true;
 }
 bool ReadGraph :: writeFile() {
-    const QString fileName = "C:/g/Guide-Me/Guide_me/test.txt";
+    const QString fileName = "D:/Project/New folder/graph.txt";
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qCritical() << "Failed to open file for writing: " << file.errorString();
         return false;
     }
   QTextStream stream(&file);
-    stream <<ReadGraph::Cities.size()<< "\n";
-  int n=ReadGraph::Cities.size();
+
+    int cnt{};
+    string s="";
     // Write the graph edges
+    set<string> visCities;
     for (const auto& city : Cities) {
-        for (const auto& path : graph[city]) {
-            stream << city.c_str() << " - " << path.destination.c_str() << " ";
-            for (const auto& transport : graph[city]) {
-                stream << transport.transportation.c_str() << " " << transport.money << " ";
+        visCities.insert(city);
+        map<string,vector<pair<string,int>>>mp;
+        for(const auto& path:graph[city]){
+            if(visCities.find(path.destination)==visCities.end())
+                mp[path.destination].push_back({path.transportation,path.money});
+        }
+        for(const auto& path:mp){
+            s+=city+" - "+path.first;
+            cnt++;
+            for(const auto&trans:path.second){
+                s+=(" "+trans.first+" "+to_string(trans.second));
             }
-            stream << "\n";
+            s+='\n';
         }
     }
+    stream<<cnt<<'\n';
+    stream<<s.c_str();
     file.close();
     return true;
 }
