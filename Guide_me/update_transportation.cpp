@@ -24,7 +24,12 @@ void update_transportation::on_show_transportation_clicked()
 {
     src = ui->lineEdit_source->text().toStdString();
     dst = ui->lineEdit_dest->text().toStdString();
-
+    for(auto& item :ReadGraph::graph){
+        if(item.second.size()==0)
+            continue;
+        ui->comboBoxFrom->addItem(QString::fromStdString(item.first));
+        ui->comboBox_To->addItem(QString::fromStdString(item.first));
+    }
 
 
     for (int i = 0,j=0; i < ReadGraph::graph[src].size(); i++)
@@ -73,9 +78,10 @@ void update_transportation::on_update_2_clicked()
     // }
     for (int i = 0; i < lineEdit_trans.size(); i++)
     {
-        string mike=lineEdit_trans[i]->text().toStdString();
         ReadGraph::graph[src][i].transportation =lineEdit_trans[i]->text().toStdString();
         ReadGraph::graph[src][i].money=lineEdit_money[i]->text().toInt();
+        ReadGraph::graph[dst][i].transportation =lineEdit_trans[i]->text().toStdString();
+        ReadGraph::graph[dst][i].money=lineEdit_money[i]->text().toInt();
     }
     // Clear the existing line edits if needed
     for (QLineEdit* edit : lineEdit_trans) {

@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -36,6 +37,10 @@ public:
     QLineEdit *lineEdit_dest;
     QPushButton *show_transportation;
     QPushButton *back;
+    QComboBox *comboBox_To;
+    QLabel *label_5;
+    QComboBox *comboBoxFrom;
+    QLabel *label_4;
 
     void setupUi(QDialog *update_transportation)
     {
@@ -48,7 +53,7 @@ public:
         update_2->setGeometry(QRect(540, 50, 83, 29));
         layoutWidget = new QWidget(update_transportation);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(160, 30, 304, 71));
+        layoutWidget->setGeometry(QRect(220, 40, 304, 71));
         horizontalLayout_3 = new QHBoxLayout(layoutWidget);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
@@ -95,6 +100,28 @@ public:
         back = new QPushButton(update_transportation);
         back->setObjectName("back");
         back->setGeometry(QRect(560, 570, 83, 29));
+        comboBox_To = new QComboBox(update_transportation);
+        comboBox_To->setObjectName("comboBox_To");
+        comboBox_To->setGeometry(QRect(60, 80, 131, 31));
+        comboBox_To->setStyleSheet(QString::fromUtf8("background-color:rgba(217,236,243,255);\n"
+"color:rgba(18,37,51,255);"));
+        label_5 = new QLabel(update_transportation);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(30, 80, 119, 28));
+        QFont font;
+        font.setPointSize(15);
+        label_5->setFont(font);
+        label_5->setStyleSheet(QString::fromUtf8("background-color: transparent;"));
+        comboBoxFrom = new QComboBox(update_transportation);
+        comboBoxFrom->setObjectName("comboBoxFrom");
+        comboBoxFrom->setGeometry(QRect(60, 30, 131, 31));
+        comboBoxFrom->setStyleSheet(QString::fromUtf8("background-color:rgba(217,236,243,255);\n"
+"color:rgba(18,37,51,255);"));
+        label_4 = new QLabel(update_transportation);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(10, 30, 51, 28));
+        label_4->setFont(font);
+        label_4->setStyleSheet(QString::fromUtf8("background-color: transparent;"));
 
         retranslateUi(update_transportation);
 
@@ -109,6 +136,8 @@ public:
         label->setText(QCoreApplication::translate("update_transportation", "Destination", nullptr));
         show_transportation->setText(QCoreApplication::translate("update_transportation", "show", nullptr));
         back->setText(QCoreApplication::translate("update_transportation", "back", nullptr));
+        label_5->setText(QCoreApplication::translate("update_transportation", "To", nullptr));
+        label_4->setText(QCoreApplication::translate("update_transportation", "From", nullptr));
     } // retranslateUi
 
 };

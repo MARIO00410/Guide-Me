@@ -18,7 +18,7 @@ SignUp::SignUp(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QMovie *movie = new QMovie("C:/Users/mario/ya rb/c0c02bafcfe60ea76d6d7eede8ec4564(1).gif");
+    QMovie *movie = new QMovie("C:\\Users\\youss\\OneDrive\\Desktop\\resource for Guide Me GUI\\c0c02bafcfe60ea76d6d7eede8ec4564(1).gif");
     ui->background->setMovie(movie);
     movie->start();
 

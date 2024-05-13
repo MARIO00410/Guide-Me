@@ -22,7 +22,7 @@ DFS::DFS(QWidget *parent)
 {
     ui->setupUi(this);
     //ui->textEdit->setReadOnly(true);
-    QPixmap bkgnd("C:/Users/mario/ya rb/WhatsApp_Image_2024-04-13_at_19.31.07_8e45379f.jpg");
+    QPixmap bkgnd("C:\\Users\\youss\\OneDrive\\Desktop\\resource for Guide Me GUI\\WhatsApp_Image_2024-04-13_at_19.31.07_8e45379f.jpg");
     bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);

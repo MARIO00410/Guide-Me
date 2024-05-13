@@ -61,7 +61,7 @@ void ReadGraph::GetGraph() {
         qInfo() << "graph already read";
         return;
     }
-    const QString fileName = "D:/Project/New folder/graph.txt";
+    const QString fileName = "C:\\Users\\youss\\OneDrive\\Desktop\\TransportationMap.txt";
     QFile file(fileName);
 
     if (!file.exists()) {
@@ -89,7 +89,7 @@ void ReadGraph::GetGraph() {
     is_read = true;
 }
 bool ReadGraph :: writeFile() {
-    const QString fileName = "D:/Project/New folder/graph.txt";
+    const QString fileName = "C:\\Users\\youss\\OneDrive\\Desktop\\TransportationMap.txt";
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qCritical() << "Failed to open file for writing: " << file.errorString();

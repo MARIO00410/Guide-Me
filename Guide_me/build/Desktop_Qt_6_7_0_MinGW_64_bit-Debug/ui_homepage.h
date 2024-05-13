@@ -35,12 +35,12 @@ public:
     QComboBox *comboBox_To;
     QPushButton *dfs;
     QPushButton *BFS;
-    QPushButton *completeGraph;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton_update;
+    QPushButton *completeGraph;
 
     void setupUi(QDialog *HomePage)
     {
@@ -105,30 +105,49 @@ public:
 "color:rgba(18,37,51,255);\n"
 "border-radius: 8px;\n"
 ""));
-        completeGraph = new QPushButton(HomePage);
-        completeGraph->setObjectName("completeGraph");
-        completeGraph->setGeometry(QRect(400, 40, 80, 24));
-        layoutWidget = new QWidget(HomePage);
+        layoutWidget = new QWidget(groupBox);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(80, 220, 295, 31));
+        layoutWidget->setGeometry(QRect(70, 170, 311, 41));
         horizontalLayout_4 = new QHBoxLayout(layoutWidget);
         horizontalLayout_4->setObjectName("horizontalLayout_4");
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
         pushButton_2 = new QPushButton(layoutWidget);
         pushButton_2->setObjectName("pushButton_2");
+        pushButton_2->setStyleSheet(QString::fromUtf8("background-color:rgba(217,236,243,255);\n"
+"color:rgba(18,37,51,255);\n"
+"border-radius: 8px;\n"
+""));
 
         horizontalLayout_4->addWidget(pushButton_2);
 
         pushButton_3 = new QPushButton(layoutWidget);
         pushButton_3->setObjectName("pushButton_3");
+        pushButton_3->setStyleSheet(QString::fromUtf8("background-color:rgba(217,236,243,255);\n"
+"color:rgba(18,37,51,255);\n"
+"border-radius: 8px;"));
 
         horizontalLayout_4->addWidget(pushButton_3);
 
         pushButton_update = new QPushButton(layoutWidget);
         pushButton_update->setObjectName("pushButton_update");
+        pushButton_update->setStyleSheet(QString::fromUtf8("background-color:rgba(217,236,243,255);\n"
+"color:rgba(18,37,51,255);\n"
+"border-radius: 8px;\n"
+""));
 
         horizontalLayout_4->addWidget(pushButton_update);
 
+        completeGraph = new QPushButton(groupBox);
+        completeGraph->setObjectName("completeGraph");
+        completeGraph->setGeometry(QRect(200, 10, 231, 31));
+        QFont font2;
+        font2.setPointSize(16);
+        font2.setUnderline(true);
+        completeGraph->setFont(font2);
+        completeGraph->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
+"color: rgba(217,236,243,255);\n"
+"border: 0px;\n"
+""));
 
         retranslateUi(HomePage);
 
@@ -145,10 +164,10 @@ public:
         label_4->setText(QCoreApplication::translate("HomePage", "From", nullptr));
         dfs->setText(QCoreApplication::translate("HomePage", "DFS", nullptr));
         BFS->setText(QCoreApplication::translate("HomePage", "BFS", nullptr));
-        completeGraph->setText(QCoreApplication::translate("HomePage", "PushButton", nullptr));
         pushButton_2->setText(QCoreApplication::translate("HomePage", " add", nullptr));
         pushButton_3->setText(QCoreApplication::translate("HomePage", "del", nullptr));
         pushButton_update->setText(QCoreApplication::translate("HomePage", "update", nullptr));
+        completeGraph->setText(QCoreApplication::translate("HomePage", "Is this graph complete?", nullptr));
     } // retranslateUi
 
 };
